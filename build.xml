@@ -1,0 +1,239 @@
+<project name="kkMulticopterFlashTool" default="default" basedir=".">
+	<property name="version" value="0.77beta1" />
+	 <!-- Set this property value to your application name -->
+	<property name="app.name" value="kkMulticopter Flash Tool"/>
+	<property name="dist.dir" value="${basedir}/dist" />
+	<property name="bin.dir" value="${basedir}/bin" />
+	<property name="src.dir" value="${basedir}/src" />
+	<property name="resources.dir" value="${basedir}/resources" />
+	<property name="libs" value="${basedir}/lib" />
+	<property name="MainClass" value="de.lazyzero.kkMulticopterFlashTool.KKMulticopterFlashTool" />
+	<property name="MANIFEST" value="${basedir}/dist/MANIFEST.MF" />
+	<property name="splashImage" value="resources/KK.png" />
+	<property name="jar.file" value="${dist.dir}/kkMulticopterFlashTool.jar" />
+	<property name="dist.dmg.file" value="kkmulticopterflashtool_${version}.dmg" />
+
+	<taskdef name="jarbundler" classpath="./macOSX/jarbundler-2.2.0.jar" classname="net.sourceforge.jarbundler.JarBundler" />
+	<taskdef name="exe4j" classname="com.exe4j.Exe4JTask" classpath="${resources.dir}/exe4j/bin/ant.jar"/>
+
+	<path id="libs">
+		<fileset dir="lib">
+			<include name="**/*.jar" />
+			<include name="KK.png" />
+		</fileset>
+	</path>
+
+	<target name="default" depends="dmg, zip" />
+	
+	<!-- clean up -->
+	<target name="clean">
+		<delete file="${libs}/kkMulticopterFlashTool.jar" quiet="yes" failonerror="false"/>
+		<mkdir dir="${dist.dir}"/>
+		<delete>
+			<fileset dir="${dist.dir}" includes="**/*"/>
+		</delete>
+	</target>
+
+	<!-- generate the manifest-file -->
+	<target name="gen-manifest">
+		<tstamp/>
+		<fileset dir="${libs}" id="jar.files">
+			<include name="**/*.jar" />
+		</fileset>
+		<pathconvert pathsep=" " property="jars" refid="jar.files">
+			<filtermapper>
+				<replacestring from="${basedir}/lib/" to= ""/>
+				<replacestring from="${basedir}\lib\" to= ""/>
+				<replacestring from="\" to= "/"/>
+			</filtermapper>
+		</pathconvert>
+		<manifest file="${MANIFEST}">
+			<attribute name="Main-Class" value="${MainClass}" />
+			<attribute name="Class-Path" value="${jars}" />
+			<attribute name="SplashScreen-Image" value="${splashImage}" />
+
+		</manifest>
+	</target>
+
+
+	<!-- Build jar file -->
+	<target name="jar" description="Build jar file" depends="clean, gen-manifest">
+		<mkdir dir="${dist.dir}"/>
+		<!-- generate the manifest-file -->
+		<jar jarfile="${jar.file}" basedir="${bin.dir}" manifest="${MANIFEST}">
+		</jar>
+
+		<copy file="${jar.file}" todir="${libs}" />
+
+	</target>
+	
+	<target name="launcher_win32">
+		<copy tofile="kkflashtool_win32.exe4j" file="kkflashtool_win32_template.exe4j">
+			<filterset>
+				<filter token="VERSION" value="${version}" />
+			</filterset>
+		</copy>
+		<exe4j projectfile="kkflashtool_win32.exe4j"/>
+	</target>
+	<target name="launcher_win64">
+			<copy tofile="kkflashtool_win64.exe4j" file="kkflashtool_win64_template.exe4j">
+				<filterset>
+					<filter token="VERSION" value="${version}" />
+				</filterset>
+			</copy>
+			<exe4j projectfile="kkflashtool_win64.exe4j"/>
+	</target>
+
+	<target name="zip" depends="jar,launcher_win32,launcher_win64">
+		<zip destfile="kkmulticopterflashtool_${version}.zip">
+		    <zipfileset dir="${libs}" prefix="lib" filemode="755">
+		    	<exclude name="**/avrdude/mac/**"/>
+		    </zipfileset>
+			<zipfileset dir="${src.dir}" prefix="src"/>
+		    <zipfileset dir="." includes="license.txt"/>
+			<zipfileset dir="." includes="kkflashtool_win32.exe"/>
+			<zipfileset dir="." includes="kkflashtool_win64.exe"/>
+			<zipfileset dir="." includes="kkMulticopterFlashTool_32.sh" filemode="755"/>
+			<zipfileset dir="." includes="kkMulticopterFlashTool_64.sh" filemode="755"/>
+		  </zip>
+	</target>
+	
+	<target name="OSX_bundle" depends="jar">
+
+		<delete dir="macOSXrelease" />
+		<mkdir dir="macOSXrelease"/>
+
+		<!-- create a jar bundle for the mac -->
+		<jarbundler dir="macOSXrelease"
+	                name="kkMulticopter Flash Tool"
+	                shortname="kkFlashTool"
+	                signature="Christian Moll"
+	                mainclass="${MainClass}" 
+			        icon="macOSX/kk.icns"
+	                jvmversion="1.6+"
+	                version="${version}"
+	                infostring="kkFlashTool, v${version}, February 2011"
+	                build="0001"
+	                bundleid="de.lazyzero.kkMulticopterFlashTool.Main" >
+
+			<jarfileset dir=".">
+				<include name="kkMulticopterFlashTool.jar" />
+				<include name="librxtxSerial.jnilib" />
+				<include name="librxtxSerial.dynlib" />
+				<include name="license.txt" />
+				<include name="lib/**/*"/>
+				<include name="src/**/*" />
+				<exclude name="**/CVS" />
+				<exclude name="lib/avrdude/linux/**/*" />
+				<exclude name="lib/avrdude/windows/**/*" />
+				<exclude name="lib/linux32/**/*" />
+				<exclude name="lib/linux64/**/*" />
+				<exclude name="lib/win32/**/*" />
+				<exclude name="lib/win64/**/*" />
+			</jarfileset>
+
+			<javaproperty name="apple.laf.useScreenMenuBar" value="true"/>
+			<javaproperty name="apple.awt.brushMetal" value="true"/>
+			<javaproperty name="apple.awt.showGrowBox" value="false"/>
+
+			<resourcefilelist dir="." files="license.txt"/>
+
+		</jarbundler>
+		
+	</target>
+	
+	<target name="signMac" description="sign my app" depends="OSX_bundle">
+		<exec dir="./macOSXrelease" executable="/usr/bin/codesign">
+		<arg line="-s - --force -f '${app.name}.app'"  />
+		</exec>
+	</target>
+
+	<!-- Create a DMG - This only works on MacOSX (requires hdiutil) -->
+	<target name="dmg" description="Create a DMG package for MacOSX (only works on MacOSX)" depends="signMac">
+		<delete file="${dist.dmg.file}"
+			            quiet="yes" failonerror="false"/>
+	   
+
+	    <!-- Set this property value to a directory where you can 
+	         mount temporarily your images, for example /tmp -->
+	    <property name="mountdir"
+	              value="/tmp"/>
+
+	    <!-- Delete previously created DMG -->
+	    <delete file="${app.name}.dmg}" quiet="yes" failonerror="false"/>
+
+	    <!-- Create a temporary Disk Image -->
+	    <exec executable="/usr/bin/hdiutil" os="Mac OS X" failonerror="true">
+	      <arg value="create"/>
+	      <arg value="-srcfolder"/>
+	      <arg value="macOSXrelease/${app.name}.app"/>
+	      <arg value="-volname"/>
+	      <arg value="${app.name}"/>
+	      <arg value="-ov"/>
+	      <arg value="${app.name}-tmp.dmg"/>
+	      <arg value="-format"/>
+	      <arg value="UDRW"/>
+	    </exec>
+
+	    <!-- Attach the temporary image -->
+	    <exec executable="/usr/bin/hdiutil" os="Mac OS X" failonerror="true">
+	      <arg value="attach"/>
+	      <arg value="${app.name}-tmp.dmg"/>
+	      <arg value="-mountroot"/>
+	      <arg value="${mountdir}/"/>
+	    </exec>
+
+	    <!-- Add a symbolic link to the Applications directory -->
+	    <symlink link="${mountdir}/${app.name}" resource="/Applications"/>
+		
+		<copy file="license.txt"
+		          tofile="${mountdir}/${app.name}/license.txt"
+		          overwrite="true"/>
+		
+		<!--<symlink link="${mountdir}/${app.name}" resource="/usr/local/lib"/>
+		<copy file="libusb-1.0.0.dylib"
+				          tofile="${mountdir}/${app.name}/libusb-1.0.0.dylib"
+				          overwrite="true"/>
+				          -->
+		
+		<copy file="./resources/DS_Store"
+				          tofile="${mountdir}/${app.name}/.DS_Store"
+				          overwrite="true"/>
+		
+		
+		<exec executable="/bin/chmod" os="Mac OS X" failonerror="true">
+			      <arg value="a+x"/>
+			      <arg value="${mountdir}/${app.name}/${app.name}.app/Contents/Resources/Java/lib/avrdude/mac/avrdude"/>
+			    </exec>
+		<exec executable="/bin/chmod" os="Mac OS X" failonerror="true">
+					      <arg value="a+x"/>
+					      <arg value="${mountdir}/${app.name}/${app.name}.app/Contents/Resources/Java/lib/avrdude/mac/usbtiny/avrdude"/>
+					    </exec>
+
+	    <!-- Detach the temporary image -->
+	    <exec executable="/usr/bin/hdiutil" os="Mac OS X" failonerror="true">
+	      <arg value="detach"/>
+	      <arg value="${mountdir}/${app.name}"/>
+	    </exec>
+
+	    <!-- Compress it to a new image -->
+	    <exec executable="/usr/bin/hdiutil" os="Mac OS X" failonerror="true">
+	      <arg value="convert"/>
+	      <arg value="${app.name}-tmp.dmg"/>
+	      <arg value="-format"/>
+	      <arg value="UDZO"/>
+	      <arg value="-o"/>
+	      <arg value="${dist.dmg.file}"/>
+	    </exec>
+
+	    <!-- Delete the temporary image -->
+	    <delete file="${app.name}-tmp.dmg"
+	            quiet="yes" failonerror="false"/>
+		
+		<exec executable="hdiutil">
+					<arg line="internet-enable -yes ${dist.dmg.file}"/>
+					</exec>
+	</target>
+
+
+</project>

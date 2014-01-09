@@ -1,0 +1,65 @@
+<!DOCTYPE about SYSTEM "file:/about.dtd">
+<about>
+
+<tab name="Version">
+<h2>TEEMSS by the Concord Consortium</h2>
+<h1>Sound Grapher</h1>
+<p>Copyright (c) 2005 by the Concord Consortium, All Rights Reserved</p>
+<p>Version: 1.0, Date: Sep. 9, 2005</p>
+</tab>
+
+<tab name="License">
+<h1>Concord Consortium Software License</h1>
+
+<p>All Concord Consortium software is Copyright (c) 2005, The Concord Consortium, Inc.
+10 Concord Crossing, Concord, MA 01742.</p>
+
+<p>All of the software we write is copyrighted under an open source
+license called the GNU Lesser General Public License (LGPL). This
+means that anyone can have access to the source code and make changes
+in it. We do this because open source is a strategy for long-term
+support of this software. All our work is grant-supported, so when
+the grant runs out, our ability to support the software ends. If a
+community of educators starts using this software, then it is in the
+interest of all members of the community to maintain and improve it.
+Like democracy, this is a risky strategy, but it seems to be better
+than any alternatives. Help us make it a success by using the
+software to help grow the community of educators dependent on this
+wonderful software.</p>
+
+<p>Here is an abbreviated plain English summary of the LGPL license.</p>
+
+<p><strong>This license allows you to use this software and in addition you may
+make and distribute copies of this software.</strong></p>
+
+<p>If you distribute copies of this software you may not change the
+copyright or license of this software.  You also have the right to
+view and modify the source code for this software.  If you modify
+this software and distribute it you are required to license your
+copyrighted modifications under an LGPL-compatible license and to
+make the entire source code for your derivation available to anybody
+you distribute the software to.  You also have the right to link this
+software with other software with different licensing terms and
+distribute the combined software.  In this case you must still
+license the any derivations you have made of our software under an
+LGPL-compatible license.</p>
+
+<p>This is just a summary of the LGPL license.  The actual license can
+be read here: <a href="http://www.concord.org/license.html">CC Software License</a></p>
+
+
+</tab>
+
+<tab name="Credits">
+<p><strong>Lead Programmer:</strong> Dmitry Markman</p>
+<p><strong>Junior Programmer:</strong> Shengyao Wang</p>
+<p><strong>Design Team:</strong> Stephen Bannasch, Ed Hazzard, Carolyn Staudt</p>
+<p><strong>Interface Team:</strong> David Jarsky</p>
+
+</tab>
+
+<tab name="Acknowledgements">
+<p>Innovative technology developed by the Concord Consortium permits networked users of our software to save with one click an image of any screen made with CC interactive software.  They can then share their work with other networked users in real time or asynchronously.
+</p>
+</tab>
+</about>

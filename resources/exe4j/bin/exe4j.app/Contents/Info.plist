@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist SYSTEM "file://localhost/System/Library/DTDs/PropertyList.dtd">
+<plist version="0.9">
+<dict>
+<key>CFBundleName</key>
+<string>exe4j</string>
+<key>CFBundleExecutable</key>
+<string>JavaApplicationStub</string>
+<key>CFBundleIconFile</key>
+<string>app.icns</string>
+<key>CFBundleInfoDictionaryVersion</key>
+<string>6.0</string>
+<key>CFBundlePackageType</key>
+<string>APPL</string>
+<key>CFBundleSignature</key>
+<string>????</string>
+<key>CFBundleIdentifier</key>
+<string>com.install4j.4426-4425-6055-8903.2</string>
+<key>CFBundleVersion</key>
+<string>4.5.2</string>
+<key>CFBundleShortVersionString</key>
+<string>4.5.2</string>
+<key>CFBundleGetInfoString</key>
+<string>4.5.2</string>
+<key>CFBundleDevelopmentRegion</key>
+<string>en</string>
+<key>CFBundleAllowMixedLocalizations</key>
+<true/>
+<key>NSHighResolutionCapable</key>
+<true/>
+<!-- I4J_INSERT_DOCTYPE -->
+<key>Java</key>
+<dict>
+<key>MainClass</key>
+<string>com.install4j.runtime.launcher.MacLauncher</string>
+<key>VMOptions</key>
+<string></string><!-- I4J_INSERT_VMOPTIONS -->
+<key>Arguments</key>
+<string></string>
+<key>Properties</key>
+<dict>
+<key>exe4j.moduleName</key>
+<string>$APP_PACKAGE</string>
+<key>install4j.swt</key>
+<string>false</string>
+<key>install4j.launcherId</key>
+<string>2</string>
+<!-- I4J_INSERT_PROPERTIES -->
+</dict>
+<key>JVMVersion</key>
+<string>1.6+</string>
+<key>ClassPath</key>
+<string>$APP_PACKAGE/../../.install4j/i4jruntime.jar:$APP_PACKAGE/../../lib/jide-editor.jar:$APP_PACKAGE/../../lib/miglayout.jar:$APP_PACKAGE/../../lib/jide-shortcut.jar:$APP_PACKAGE/../../lib/buttonbar.jar:$APP_PACKAGE/../../lib/jide-components.jar:$APP_PACKAGE/../../lib/quaqua-filechooser-only.jar:$APP_PACKAGE/../../lib/jclasslib-library.jar:$APP_PACKAGE/../../lib/commons-compress.jar:$APP_PACKAGE/../../lib/alloy.jar:$APP_PACKAGE/../../lib/tar.jar:$APP_PACKAGE/../../lib/jdom.jar:$APP_PACKAGE/../../lib/annotations.jar:$APP_PACKAGE/../../lib/jargs.jar:$APP_PACKAGE/../../lib/jh.jar:$APP_PACKAGE/../../lib/jide-common.jar:$APP_PACKAGE/../../lib/jide-grids.jar:$APP_PACKAGE/../../bin/exe4j.jar</string><!-- I4J_INSERT_CLASSPATH -->
+</dict>
+</dict>
+</plist>

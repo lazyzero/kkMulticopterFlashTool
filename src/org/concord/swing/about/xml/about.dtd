@@ -1,0 +1,16 @@
+<!ELEMENT about (tab)* >
+<!ATTLIST tab name CDATA #REQUIRED>
+
+<!ELEMENT tab (#PCDATA |ul | b | p | h1 | h2 | h3)* >
+<!ELEMENT ul (li)*>
+<!ELEMENT li (#PCDATA | b)*>
+
+<!ELEMENT p (#PCDATA | ul | b | i)* >
+
+<!ELEMENT b (#PCDATA | ul | i)*>
+<!ELEMENT i (#PCDATA | ul | b )* >
+<!ELEMENT u (#PCDATA | b | i)* >
+
+<!ELEMENT h1 (#PCDATA | b | i | u)* >
+<!ELEMENT h2 (#PCDATA | b | i | u)* >
+<!ELEMENT h3 (#PCDATA | b | i | u)* >
