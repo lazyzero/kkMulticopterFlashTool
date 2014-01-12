@@ -55,6 +55,7 @@ public class AvrdudeControl {
         
             
         String os = System.getProperty("os.name").toLowerCase();
+        String arch = System.getProperty("os.arch");
         System.out.println("OS for avrdude settings is: " + os);
         
         if (os.contains("windows") && !isUSBtiny) {
@@ -73,14 +74,20 @@ public class AvrdudeControl {
         	path = path.substring(0, path.indexOf(":"));
         	m_avrdude = path + "/lib/avrdude/mac/usbtiny/avrdude";
             m_avrdudeConfig = path + "/lib/avrdude/mac/usbtiny/avrdude.conf";
-        } else if (os.contains("linux") && !isUSBtiny){
-            m_avrdude = System.getProperty("user.dir")+"/lib/avrdude/linux/avrdude";
-            m_avrdudeConfig = System.getProperty("user.dir")+"/lib/avrdude/linux/avrdude.conf";
-        } else if (os.contains("linux") && isUSBtiny){
-            m_avrdude = System.getProperty("user.dir")+"/lib/avrdude/linux/usbtiny/avrdude";
-            m_avrdudeConfig = System.getProperty("user.dir")+"/lib/avrdude/linux/usbtiny/avrdude.conf";
+        } else if (os.contains("linux")) {
+        	if (arch.equals("amd64")) {
+    			m_avrdude = System.getProperty("user.dir")+"/lib/avrdude/linux64/avrdude";
+    			m_avrdudeConfig = System.getProperty("user.dir")+"/lib/avrdude/linux64/avrdude.conf";
+        	} else {//32-bit branch
+        		if (!isUSBtiny) {
+	        		m_avrdude = System.getProperty("user.dir")+"/lib/avrdude/linux/avrdude";
+	        	    m_avrdudeConfig = System.getProperty("user.dir")+"/lib/avrdude/linux/avrdude.conf";
+        		} else {
+        			m_avrdude = System.getProperty("user.dir")+"/lib/avrdude/linux/usbtiny/avrdude";
+                    m_avrdudeConfig = System.getProperty("user.dir")+"/lib/avrdude/linux/usbtiny/avrdude.conf";
+        		}
+        	}
         }
-        
         loadPreferences();
     }
     

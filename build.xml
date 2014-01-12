@@ -1,5 +1,5 @@
 <project name="kkMulticopterFlashTool" default="default" basedir=".">
-	<property name="version" value="0.77beta1" />
+	<property name="version" value="0.77beta2" />
 	 <!-- Set this property value to your application name -->
 	<property name="app.name" value="kkMulticopter Flash Tool"/>
 	<property name="dist.dir" value="${basedir}/dist" />
@@ -125,6 +125,7 @@
 				<include name="src/**/*" />
 				<exclude name="**/CVS" />
 				<exclude name="lib/avrdude/linux/**/*" />
+				<exclude name="lib/avrdude/linux64/**/*" />
 				<exclude name="lib/avrdude/windows/**/*" />
 				<exclude name="lib/linux32/**/*" />
 				<exclude name="lib/linux64/**/*" />
