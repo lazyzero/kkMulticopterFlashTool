@@ -43,6 +43,7 @@ import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
 import de.lazyzero.kkMulticopterFlashTool.KKMulticopterFlashTool;
+import de.lazyzero.kkMulticopterFlashTool.utils.MultiFlashSettings;
 import de.lazyzero.kkMulticopterFlashTool.utils.PortScanner;
 
 public class ProgrammerPanel extends JPanel implements ActionListener, FocusListener {
@@ -66,6 +67,7 @@ public class ProgrammerPanel extends JPanel implements ActionListener, FocusList
 	private Vector<String> availablePorts;
 	private JButton multiFlashButton;
 	private boolean multiFlash = false;
+	private MultiFlashSettings mfs;
 	
 	
 	public ProgrammerPanel(KKMulticopterFlashTool parent, Vector<AvrdudeProgrammer> programmers) {
@@ -76,6 +78,8 @@ public class ProgrammerPanel extends JPanel implements ActionListener, FocusList
 	}
 	
 	private void init() {
+		this.mfs = new MultiFlashSettings();
+		
 		//create the CellContraints
 		cc  = new CellConstraints();
 		
@@ -171,7 +175,7 @@ public class ProgrammerPanel extends JPanel implements ActionListener, FocusList
 	}
 	
 	private void openMultiFlashConfigDialog() {
-		MultiFlashConfigDialog mfd = new MultiFlashConfigDialog();
+		MultiFlashConfigDialog mfd = new MultiFlashConfigDialog(this.mfs);
 		mfd.setModalityType(ModalityType.APPLICATION_MODAL);
 		mfd.setVisible(true);
 	}

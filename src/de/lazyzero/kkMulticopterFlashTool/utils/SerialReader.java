@@ -97,6 +97,7 @@ public class SerialReader extends Thread{
 	
 	public void close() throws IOException {
 		in.close();
+		serialPort.removeEventListener();
 		serialPort.close();
 	}
 	

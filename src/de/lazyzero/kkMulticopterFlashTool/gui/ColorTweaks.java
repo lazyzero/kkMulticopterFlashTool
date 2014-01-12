@@ -52,6 +52,7 @@ public class ColorTweaks {
 		UIManager.put("CheckBoxMenuItem.foreground", Color.WHITE);
 		UIManager.put("Button.select", Color.gray);
 		UIManager.put("Label.foreground", Color.WHITE);
+		//UIManager.put("control", Color.WHITE);
 		UIManager.put("TextArea.foreground", Color.WHITE);
 		UIManager.put("TextField.border", new LineBorder(Color.LIGHT_GRAY));
 		UIManager.put("TitledBorder.titleColor", Color.WHITE);

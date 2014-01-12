@@ -64,6 +64,8 @@ public class Icons {
 	public static final String HUNGARIAN = "hu.png";
 	public static final String SERBIAN = "serbia.png";
 	public static final String BOSNIAN = "ba.png";
+	public static final String BULGARIAN = "bg.png";
+	public static final String FINNISH = "fi.png";
 	
 	public static final String RUN = "runit.png"; 
 	public static final String STOP = "not.png"; 
@@ -87,6 +89,8 @@ public class Icons {
 	public static final String MEMS = "mems.png";
 	public static final String ACC = "mems.png";
 	public static final String CPPM = "mems.png";
+	
+	
 	
 	
 	
