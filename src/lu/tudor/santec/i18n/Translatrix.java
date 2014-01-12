@@ -51,7 +51,7 @@ public class Translatrix {
 
 	private static String c_Null = "NULL";
 
-	private static Pattern c_KeyPattern = Pattern.compile("^language_(\\d)$",
+	private static Pattern c_KeyPattern = Pattern.compile("^language_(\\d{1,2})$",
 			Pattern.CASE_INSENSITIVE);
 
 	private static Pattern c_LocalePattern = Pattern.compile(

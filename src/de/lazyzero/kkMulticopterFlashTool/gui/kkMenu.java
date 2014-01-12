@@ -377,6 +377,7 @@ public class kkMenu extends JMenuBar {
 		createLanguageMenuItem("settings.language.faroese", "fo", "FO", null, Icons.FAROESE, langSubMenu);
 		createLanguageMenuItem("settings.language.danish", "da", "DK", null, Icons.DANISH, langSubMenu);
 		createLanguageMenuItem("settings.language.swedish", "se", "SE", null, Icons.SWEDISH, langSubMenu);
+		createLanguageMenuItem("settings.language.finnish", "fi", "FI", null, Icons.FINNISH, langSubMenu);
 		createLanguageMenuItem("settings.language.brazilian", "pt", "BR", null, Icons.BRAZILIAN, langSubMenu);
 		createLanguageMenuItem("settings.language.polish", "pl", "PL", null, Icons.POLISH, langSubMenu);
 		createLanguageMenuItem("settings.language.spanish", "es", "ES", null, Icons.SPANISH, langSubMenu);
@@ -395,6 +396,7 @@ public class kkMenu extends JMenuBar {
 		createLanguageMenuItem("settings.language.hungarian", "hu", "HU", null, Icons.HUNGARIAN, langSubMenu);
 		createLanguageMenuItem("settings.language.bosnian", "bs", "BA", null, Icons.BOSNIAN, langSubMenu);
 		createLanguageMenuItem("settings.language.serbian", "cs", "SR", null, Icons.SERBIAN, langSubMenu);
+		createLanguageMenuItem("settings.language.bulgarian", "bg", "BG", null, Icons.BULGARIAN, langSubMenu);
 		
 		offlineMenuItem.addActionListener(
 				new ActionListener() {
