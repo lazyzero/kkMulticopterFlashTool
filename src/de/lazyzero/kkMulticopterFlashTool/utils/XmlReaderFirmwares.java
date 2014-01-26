@@ -28,8 +28,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URI;
 import java.net.URL;
 import java.util.Collections;
 import java.util.Comparator;
@@ -119,9 +117,16 @@ public class XmlReaderFirmwares {
 		while (en.hasMoreElements()) {
 			Firmware firmware = (Firmware) en.nextElement();
 			if (firmware.getController().contains(controllerName)){
-				fw.add(firmware);
-				System.out.println("add firmware to drop down list " + firmware);
-			}
+				if (KKMulticopterFlashTool.isHideDecprecatedEnabled()) {
+					if (!firmware.isDeprecated()) {
+						fw.add(firmware);
+						System.out.println("add firmware to drop down list " + firmware);
+					}
+				} else {
+					fw.add(firmware);
+					System.out.println("add firmware to drop down list " + firmware);
+				}
+			} 
 		}
 		
 		Collections.sort(fw, new Comparator<Firmware>() {
@@ -206,9 +211,8 @@ public class XmlReaderFirmwares {
         String name = XmlUtil.getAttr(node, "name");
         String version = XmlUtil.getAttr(node, "value");
         
-        
-        
-        while (nodeFirmware != null) {
+        boolean isDeprecated = false;
+		while (nodeFirmware != null) {
             
         	if (nodeFirmware.getNodeName().equals("author")) {
         		author = XmlUtil.getAttr(nodeFirmware, "name");
@@ -291,6 +295,9 @@ public class XmlReaderFirmwares {
         	if (nodeFirmware.getNodeName().equals("server")) {
         		server = new String(XmlUtil.getAttr(nodeFirmware, "name"));
             }
+        	if (nodeFirmware.getNodeName().equals("deprecated")) {
+        		isDeprecated = Boolean.parseBoolean(XmlUtil.getAttr(nodeFirmware, "value"));
+            }
             
             nodeFirmware = nodeFirmware.getNextSibling();
         }
@@ -316,6 +323,7 @@ public class XmlReaderFirmwares {
         firmware.setFeatures(features);
         firmware.setTargetPlatform(target);
         firmware.setServer(server);
+        firmware.setDeprecated(isDeprecated);
         
        //firmware.getFile();
         

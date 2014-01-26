@@ -101,7 +101,7 @@ public class KKMulticopterFlashTool extends JFrame implements
 	private static final long serialVersionUID = 1L;
 	public static String VERSION = "0.77";
 	private static boolean isBeta = true;
-	private static int betaVersion = 2;
+	private static int betaVersion = 3;
 	public static final String MODE_CHANGED = "changed";
 	public static final String KKPLUSBOOT = "kkplusboot";
 	public static final String FLYCAM_BLACKBOARD = "flycam_black";
@@ -158,6 +158,7 @@ public class KKMulticopterFlashTool extends JFrame implements
 	public static boolean ENABLE_PORT_CHECK = true;
 	private static boolean isPopupsEnabled;
 	private static int countdown;
+	private static boolean isHideDeprecated;
 	private JTabbedPane tabbedPane = new JTabbedPane();
 	//private TestPanel testPanel;
 	private JPanel programmingPanel;
@@ -581,6 +582,7 @@ public class KKMulticopterFlashTool extends JFrame implements
 			
 			offlineMode = new Boolean(settings.getProperty("offlineMode","false"));
 			isPopupsEnabled = new Boolean(settings.getProperty("isPopupEnabled","true"));
+			isHideDeprecated = new Boolean(settings.getProperty("isHideDeprecated","false"));
 			countdown = Integer.parseInt(settings.getProperty("countdown", "0"));
 			
 			if (isOfflineMode()) {
@@ -619,6 +621,7 @@ public class KKMulticopterFlashTool extends JFrame implements
 
 			settings.put("offlineMode", offlineMode+"");
 			settings.put("isPopupEnabled", isPopupsEnabled+"");
+			settings.put("isHideDeprecated", isHideDeprecated+"");
 			settings.put("countdown", countdown+"");
 			
 			settings.put("programmer", programmer.getId());
@@ -1063,6 +1066,15 @@ public class KKMulticopterFlashTool extends JFrame implements
 	public static boolean isPopupsEnabled() {
 		return isPopupsEnabled;
 	}
+	
+	public static void setHideDeprecatedEnabled(boolean hideDeprecated) {
+		isHideDeprecated = hideDeprecated;
+	}
+
+
+	public static boolean isHideDecprecatedEnabled() {
+		return isHideDeprecated;
+	}
 
 
 	public static int getCountdown() {
@@ -1100,5 +1112,8 @@ public class KKMulticopterFlashTool extends JFrame implements
 		
 		firePropertyChange(ControllerPanel.CONTROLLER_CHANGED, false, false);
 	}
+
+
+	
 
 }

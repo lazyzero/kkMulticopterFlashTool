@@ -79,6 +79,7 @@ public class Firmware {
 	private String svnEEpromName;
 	private String eepromMD5;
 	private String eepromMD5Calculated;
+	private boolean isDeprecated = false;
 	
 	
 
@@ -581,6 +582,14 @@ public class Firmware {
 
 	public void setEEpromSVNname(String svnEEpromName) {
 		this.svnEEpromName = svnEEpromName;
+	}
+
+	public void setDeprecated(boolean isDeprecated) {
+		this.isDeprecated = isDeprecated;
+	}
+
+	public boolean isDeprecated() {
+		return isDeprecated;
 	}
 	
 }

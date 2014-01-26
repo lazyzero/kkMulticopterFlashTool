@@ -344,6 +344,10 @@ public class kkMenu extends JMenuBar {
 		enablePopupMenuItem.setSelected(KKMulticopterFlashTool.isPopupsEnabled());
 		setup.add(enablePopupMenuItem);
 		
+		final JCheckBoxMenuItem enableHideDepricatedMenuItem = new JCheckBoxMenuItem(_("settings.hidedeprecated"));
+		enableHideDepricatedMenuItem.setSelected(KKMulticopterFlashTool.isHideDecprecatedEnabled());
+		setup.add(enableHideDepricatedMenuItem);
+		
 		countdown = new JNamedIntMenuItem(_("settings.countdown"), new FocusListener() {
 			
 			@Override
@@ -420,6 +424,20 @@ public class kkMenu extends JMenuBar {
 							KKMulticopterFlashTool.setPopupEnabled(true);
 						} else {
 							KKMulticopterFlashTool.setPopupEnabled(false);
+						}
+					}
+				}
+			);
+		
+		enableHideDepricatedMenuItem.addActionListener(
+				new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						parent.firePropertyChange(ControllerPanel.CONTROLLER_CHANGED, 0, 1);
+						if (enableHideDepricatedMenuItem.isSelected()) {
+							KKMulticopterFlashTool.setHideDeprecatedEnabled(true);
+						} else {
+							KKMulticopterFlashTool.setHideDeprecatedEnabled(false);
 						}
 					}
 				}

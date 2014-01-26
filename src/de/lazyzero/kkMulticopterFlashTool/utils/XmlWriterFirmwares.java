@@ -26,6 +26,8 @@ import java.util.Vector;
 
 import org.apache.commons.codec.EncoderException;
 
+import avr8_burn_o_mat.XmlUtil;
+
 import de.lazyzero.kkMulticopterFlashTool.utils.xml.XMLElement;
 
 public class XmlWriterFirmwares {
@@ -114,6 +116,11 @@ public class XmlWriterFirmwares {
 			feature.setName("feature");
 			feature.setAttribute("value", firmware.getFeatures());
 			
+			XMLElement isDeprecated = new XMLElement();
+			feature.setName("deprecated");
+			feature.setAttribute("value", firmware.isDeprecated()?"true":"false");
+			
+			
 //		 <firmware name="TGY" value="2012-06-10">
 //		    <author name="Simon Kirby" />
 //		    <server name="mirrored by LazyZero" />
@@ -139,6 +146,7 @@ public class XmlWriterFirmwares {
 			firmwareE.addChild(additionalOptions);
 			firmwareE.addChild(commentURL);
 			if (firmware.getFeatures() != -1) firmwareE.addChild(feature);
+			firmwareE.addChild(isDeprecated);
 			
 			xml.addChild(firmwareE);
 			
