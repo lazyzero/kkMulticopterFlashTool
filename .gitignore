@@ -56,3 +56,5 @@ macOSX/DS_Store
 resources/DS_Store
 
 resources/minsoo_BlackboardFirmwareDownloader.sh
+
+lib/kkMulticopterFlashTool.jar

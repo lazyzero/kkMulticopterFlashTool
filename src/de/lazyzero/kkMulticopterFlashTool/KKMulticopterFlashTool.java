@@ -101,7 +101,7 @@ public class KKMulticopterFlashTool extends JFrame implements
 	private static final long serialVersionUID = 1L;
 	public static String VERSION = "0.77";
 	private static boolean isBeta = true;
-	private static int betaVersion = 3;
+	private static int betaVersion = 4;
 	public static final String MODE_CHANGED = "changed";
 	public static final String KKPLUSBOOT = "kkplusboot";
 	public static final String FLYCAM_BLACKBOARD = "flycam_black";
@@ -663,6 +663,7 @@ public class KKMulticopterFlashTool extends JFrame implements
 		
 		avrs.add(new AVR("atmega 8-based brushless ESC", "8kB flash", ESC, 512, null, null));
 		avrs.add(new AVR("atmega 8-based brushless ESC + enable Bootloader", "8kB flash", ESCBOOTLOADER, 512, null, null, 512));
+		avrs.add(new AVR("atmega 8-based brushless ESC (fuse restore, external clock", "8kB flash", ESCBOOTLOADER, 512, "0x3f", "0xca"));
 		avrs.add(new AVR("WiiESC", "8kB flash", WIIESC, 512, null, null));
 		avrs.add(new AVR("WiiESC Settings", "8kB flash", WIIESC_EEPROM, 512, null, null));
 		avrs.add(new AVR("EscLight", "8kB flash", ESC_LIGHT, 512, null, null));
