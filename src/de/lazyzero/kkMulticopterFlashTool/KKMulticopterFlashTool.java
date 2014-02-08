@@ -31,8 +31,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Properties;
 import java.util.Vector;
@@ -101,7 +101,7 @@ public class KKMulticopterFlashTool extends JFrame implements
 	private static final long serialVersionUID = 1L;
 	public static String VERSION = "0.77";
 	private static boolean isBeta = true;
-	private static int betaVersion = 4;
+	private static int betaVersion = 5;
 	public static final String MODE_CHANGED = "changed";
 	public static final String KKPLUSBOOT = "kkplusboot";
 	public static final String FLYCAM_BLACKBOARD = "flycam_black";
@@ -145,8 +145,7 @@ public class KKMulticopterFlashTool extends JFrame implements
 	private ProgrammerPanel			   programmerPanel;
 	private ControllerPanel			   controllerPanel;
 	private FirmwarePanel				 firmwarePanel;
-	private URL firmwareRepositoryURL = null;
-	private URL firmwareRepositoryMirrorURL = null;
+	private LinkedHashMap<String,String> firmwareRepositoryURL = new LinkedHashMap<String,String>();
 	private Firmware firmware;
 	private XmlReaderFirmwares firmwareReader;
 	private boolean offlineMode;
@@ -159,6 +158,7 @@ public class KKMulticopterFlashTool extends JFrame implements
 	private static boolean isPopupsEnabled;
 	private static int countdown;
 	private static boolean isHideDeprecated;
+	private static boolean isShowDailyTGYEnabled;
 	private JTabbedPane tabbedPane = new JTabbedPane();
 	//private TestPanel testPanel;
 	private JPanel programmingPanel;
@@ -200,7 +200,7 @@ public class KKMulticopterFlashTool extends JFrame implements
 			}
 		});
 		
-		firmwareReader = new XmlReaderFirmwares(firmwareRepositoryURL, firmwareRepositoryMirrorURL);
+		firmwareReader = new XmlReaderFirmwares(firmwareRepositoryURL);
 
 		this.init();
 		if (enableTweak) ColorTweaks.tweakColors();
@@ -572,17 +572,17 @@ public class KKMulticopterFlashTool extends JFrame implements
 		try {
 			settings.load(new FileInputStream(SETTINGS_FILE));
 			
-			firmwareRepositoryURL = new URL(settings.getProperty("firmwareRepositoryURL", "http://www.lazyzero.de/_media/firmwares.xml.zip"));
-			firmwareRepositoryMirrorURL = new URL(settings.getProperty("firmwareRepositoryMirrorURL", "http://www.michael-rossberg.de/kkmulticopter/firmwares.xml.zip"));
-			
+			firmwareRepositoryURL.put("firmwareRepositoryURL", settings.getProperty("firmwareRepositoryURL", "http://www.lazyzero.de/_media/firmwares.xml.zip"));
 			//check for depricated settings!!!
-			if (firmwareRepositoryURL.equals("http://www.lazyzero.de/_media/firmwares.xml")) {
-				firmwareRepositoryURL = new URL("http://www.lazyzero.de/_media/firmwares.xml.zip");
+			if (firmwareRepositoryURL.containsValue("http://www.lazyzero.de/_media/firmwares.xml")) {
+				firmwareRepositoryURL.put("firmwareRepositoryURL", "http://www.lazyzero.de/_media/firmwares.xml.zip");
 			}
+			firmwareRepositoryURL.put("tgydaily",settings.getProperty("tgydaily", "http://www.lazyzero.de/_media/tgy_daily.xml.zip"));
 			
 			offlineMode = new Boolean(settings.getProperty("offlineMode","false"));
 			isPopupsEnabled = new Boolean(settings.getProperty("isPopupEnabled","true"));
 			isHideDeprecated = new Boolean(settings.getProperty("isHideDeprecated","false"));
+			isShowDailyTGYEnabled = new Boolean(settings.getProperty("isShowDailyTGYEnabled", "false"));
 			countdown = Integer.parseInt(settings.getProperty("countdown", "0"));
 			
 			if (isOfflineMode()) {
@@ -600,15 +600,11 @@ public class KKMulticopterFlashTool extends JFrame implements
 			}
 
 		} catch (Exception e) {
-			try {
-				e.printStackTrace();
-				firmwareRepositoryURL = new URL("http://www.lazyzero.de/_media/firmwares.xml.zip");
-				firmwareRepositoryMirrorURL = new URL("http://www.michael-rossberg.de/kkmulticopter/firmwares.xml.zip");
-				offlineMode = false;
-			} catch (MalformedURLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			
+			e.printStackTrace();
+			firmwareRepositoryURL.put("firmwareRepositoryURL", "http://www.lazyzero.de/_media/firmwares.xml.zip");
+			offlineMode = false;
+			
 			saveSettings();
 			e.printStackTrace();
 		}
@@ -622,6 +618,8 @@ public class KKMulticopterFlashTool extends JFrame implements
 			settings.put("offlineMode", offlineMode+"");
 			settings.put("isPopupEnabled", isPopupsEnabled+"");
 			settings.put("isHideDeprecated", isHideDeprecated+"");
+			settings.put("isShowDailyTGYEnabled", isShowDailyTGYEnabled+"");
+			
 			settings.put("countdown", countdown+"");
 			
 			settings.put("programmer", programmer.getId());
@@ -630,8 +628,12 @@ public class KKMulticopterFlashTool extends JFrame implements
 			settings.put("defaultRate", programmerPanel.isDefaultRate()+"");
 			settings.put("controller", controller.getName());
 
-			settings.put("firmwareRepositoryURL", firmwareRepositoryURL.toString());
-			settings.put("firmwareRepositoryMirrorURL", firmwareRepositoryMirrorURL.toString());
+			Iterator<String> keys = firmwareRepositoryURL.keySet().iterator();
+			while (keys.hasNext()) {
+				String key = keys.next();
+				settings.put(key, firmwareRepositoryURL.get(key));
+			}
+			
 			try {
 				settings.put("last.dir", firmware.getFile().getPath());
 			} catch (Exception e) {
@@ -664,6 +666,7 @@ public class KKMulticopterFlashTool extends JFrame implements
 		avrs.add(new AVR("atmega 8-based brushless ESC", "8kB flash", ESC, 512, null, null));
 		avrs.add(new AVR("atmega 8-based brushless ESC + enable Bootloader", "8kB flash", ESCBOOTLOADER, 512, null, null, 512));
 		avrs.add(new AVR("atmega 8-based brushless ESC (fuse restore, external clock", "8kB flash", ESCBOOTLOADER, 512, "0x3f", "0xca"));
+		avrs.add(new AVR("atmega 8-based brushless ESC (fuse restore, internal clock", "8kB flash", ESCBOOTLOADER, 512, "0x24", "0xda"));
 		avrs.add(new AVR("WiiESC", "8kB flash", WIIESC, 512, null, null));
 		avrs.add(new AVR("WiiESC Settings", "8kB flash", WIIESC_EEPROM, 512, null, null));
 		avrs.add(new AVR("EscLight", "8kB flash", ESC_LIGHT, 512, null, null));
@@ -1077,6 +1080,14 @@ public class KKMulticopterFlashTool extends JFrame implements
 		return isHideDeprecated;
 	}
 
+	public static void setShowDailyTGYEnabled(boolean showDailyTGYEnabled) {
+		isShowDailyTGYEnabled = showDailyTGYEnabled;
+	}
+
+	public static boolean isShowDailyTGYEnabled() {
+		return isShowDailyTGYEnabled;
+	}
+
 
 	public static int getCountdown() {
 		System.out.println("Countdown is " + countdown);
@@ -1114,6 +1125,8 @@ public class KKMulticopterFlashTool extends JFrame implements
 		firePropertyChange(ControllerPanel.CONTROLLER_CHANGED, false, false);
 	}
 
+
+	
 
 	
 

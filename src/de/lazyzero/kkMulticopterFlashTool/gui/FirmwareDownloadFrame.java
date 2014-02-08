@@ -163,21 +163,6 @@ public class FirmwareDownloadFrame extends JDialog implements ActionListener, Ch
 		
 		return ftp;
 	}
-	
-	public static void main(String[] args) {
-		KKMulticopterFlashTool kk = new KKMulticopterFlashTool(args);
-		
-		XmlReaderFirmwares reader = null;
-		try {
-			reader = new XmlReaderFirmwares(new URL("http://lazyzero.de/_media/firmwares.xml"),new URL("http://lazyzero.de/_media/firmwares.xml"));
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		FirmwareDownloadFrame fdf = new FirmwareDownloadFrame(reader.getFirmwares());
-		
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

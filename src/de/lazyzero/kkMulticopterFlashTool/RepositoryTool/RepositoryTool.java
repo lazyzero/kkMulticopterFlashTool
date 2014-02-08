@@ -20,8 +20,7 @@ package de.lazyzero.kkMulticopterFlashTool.RepositoryTool;
 
 import static lu.tudor.santec.i18n.Translatrix._;
 
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.util.LinkedHashMap;
 import java.util.Vector;
 
 import javax.swing.JFrame;
@@ -46,12 +45,10 @@ public class RepositoryTool extends JFrame {
 
 	private void init() {
 		firmwares = new Vector<Firmware>();
-		try {
-			firmwareReader = new XmlReaderFirmwares(new URL("http://lazyzero.de/_media/firmwares.xml.zip"), new URL("http://lazyzero.de/_media/firmwares.xml.zip"));
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		LinkedHashMap<String,String> urls = new LinkedHashMap<String,String>();
+		urls.put("", "http://lazyzero.de/_media/firmwares.xml.zip");
+		
+		firmwareReader = new XmlReaderFirmwares(urls);
 		firmwares.addAll(firmwareReader.getFirmwares());
 		
 	}

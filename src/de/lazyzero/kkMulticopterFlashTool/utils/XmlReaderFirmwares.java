@@ -32,6 +32,8 @@ import java.net.URL;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -53,9 +55,7 @@ public class XmlReaderFirmwares {
     
     private Vector <Firmware> firmwares = new Vector <Firmware>();
     private double actualVersion;
-	private String firmwareRepositoryURL;
-//	private String firmwareRepositoryMirrorURL;
-	private String url;
+	private LinkedHashMap<String,String> firmwareRepositories = new LinkedHashMap<String,String>();
 	private Logger logger = KKMulticopterFlashTool.getLogger();
 	
     
@@ -63,11 +63,12 @@ public class XmlReaderFirmwares {
     public XmlReaderFirmwares() {
     }
     
-    public XmlReaderFirmwares(URL firmwareRepositoryURL, URL mirrorURL) {
-    	this.firmwareRepositoryURL = firmwareRepositoryURL.toString();
-//    	this.firmwareRepositoryMirrorURL = mirrorURL.toString();
+    public XmlReaderFirmwares(LinkedHashMap<String,String> firmwareRepositories) {
+    	firmwares.removeAllElements();
     	if (KKMulticopterFlashTool.isOfflineMode()){
-    		url = "file://"+KKMulticopterFlashTool.getTempFolder()+"firmwares.xml";
+    		
+    		String url = "file://"+KKMulticopterFlashTool.getTempFolder()+"firmwares.xml";
+    		this.firmwareRepositories.put("",url); 
     		try {
 				readXmlFile(url);
 			} catch (Exception e) {
@@ -75,13 +76,28 @@ public class XmlReaderFirmwares {
 				e.printStackTrace();
 				logger.log(Level.WARNING, e.getMessage());
 			}
-    	} else {
+    	} else { //from the online repository
+    		this.firmwareRepositories = firmwareRepositories;
     		try {
-    			System.out.println("repository URL: " + firmwareRepositoryURL.toString());
-    			url = this.firmwareRepositoryURL;
-    			
-    			downloadFirmwareDescription(new URL(url));
-    			readXmlFile(getLocalXMLFile());
+    			Iterator<String> keys = firmwareRepositories.keySet().iterator();
+    			while (keys.hasNext()) {
+    				String key = keys.next();
+    				boolean load = false;
+    				if (key.equals("tgydaily")) {
+    					if (KKMulticopterFlashTool.isShowDailyTGYEnabled()) {
+    						load = true;
+    					} 
+    				} else {    
+    					load = true;
+    				}
+    				if (load) {
+    					String url = firmwareRepositories.get(key);
+    					System.out.println("repository URL: " + url);
+    					
+    					downloadFirmwareDescription(new URL(url));
+    					readXmlFile(getLocalXMLFile(url.substring(url.lastIndexOf('/')+1)));
+    				}
+				}
     		} catch (Exception e) {
 //    			try {
 //    				System.out.println("repository mirror URL: " + firmwareRepositoryMirrorURL.toString());
@@ -168,7 +184,7 @@ public class XmlReaderFirmwares {
         Document               document = builder.parse(uri);
         
         Node node = document.getDocumentElement().getFirstChild();
-        firmwares.removeAllElements();
+        
         
         while (node != null) {
             if (node.getNodeName().equals("firmware")) {
@@ -441,8 +457,8 @@ public class XmlReaderFirmwares {
 		}
 	}
 
-	public String getURL() {
-		return this.url;
+	public LinkedHashMap<String, String> getURL() {
+		return this.firmwareRepositories;
 	}
 
 	/**
@@ -452,26 +468,24 @@ public class XmlReaderFirmwares {
 		return actualVersion;
 	}
 
-	public void reloadXmlFile(URL url) throws Exception {
-		downloadFirmwareDescription(url);
-		String uri = getLocalXMLFile();
-		readXmlFile(uri);
+	public void reloadXmlFile(LinkedHashMap<String, String> urls) throws Exception {
+		this.firmwareRepositories = urls;
+	
+		Iterator<String> keys = firmwareRepositories.keySet().iterator();
+		while (keys.hasNext()) {
+			String key = keys.next();
+			String url = firmwareRepositories.get(key);
+		
+			downloadFirmwareDescription(new URL(url));
+			String uri = getLocalXMLFile(url.substring(url.lastIndexOf('/')+1));
+			readXmlFile(uri);
+		}
 	}
 
-	private String getLocalXMLFile() {
-		String uri = KKMulticopterFlashTool.getTempFolder()+"firmwares.xml";
-//		if (!System.getProperty("os.name").toLowerCase().contains("windows")) {
-//			uri = "file:////".concat(uri);
-//		} else if (System.getProperty("os.name").toLowerCase().contains("windows xp")) {
-//			uri = "file:////".concat(uri);
-//		} 
-//		try {
-//			System.out.println("URL getLocalXMLFile(): "+ new URL(uri));
-//		} catch (MalformedURLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		System.out.println("getLocalXMLFile(): "+uri);
+	private String getLocalXMLFile(String file) {
+		String url = file.substring(0, file.length()-4);
+		
+		String uri = KKMulticopterFlashTool.getTempFolder()+url;
 		uri = "file:////".concat(uri);
 		return uri;
 	}

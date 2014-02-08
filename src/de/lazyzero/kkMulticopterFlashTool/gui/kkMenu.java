@@ -348,6 +348,10 @@ public class kkMenu extends JMenuBar {
 		enableHideDepricatedMenuItem.setSelected(KKMulticopterFlashTool.isHideDecprecatedEnabled());
 		setup.add(enableHideDepricatedMenuItem);
 		
+		final JCheckBoxMenuItem enableShowDailyTGYMenuItem = new JCheckBoxMenuItem(_("settings.showDailyTGY"));
+		enableShowDailyTGYMenuItem.setSelected(KKMulticopterFlashTool.isShowDailyTGYEnabled());
+		setup.add(enableShowDailyTGYMenuItem);
+		
 		countdown = new JNamedIntMenuItem(_("settings.countdown"), new FocusListener() {
 			
 			@Override
@@ -442,6 +446,21 @@ public class kkMenu extends JMenuBar {
 					}
 				}
 			);
+		
+		enableShowDailyTGYMenuItem.addActionListener(
+				new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						parent.firePropertyChange(ControllerPanel.CONTROLLER_CHANGED, 0, 1);
+						if (enableShowDailyTGYMenuItem.isSelected()) {
+							KKMulticopterFlashTool.setShowDailyTGYEnabled(true);
+						} else {
+							KKMulticopterFlashTool.setShowDailyTGYEnabled(false);
+						}
+					}
+				}
+			);
+		
 		
 		offlineDownloadMenuItem.addActionListener(
 				new ActionListener() {

@@ -83,7 +83,8 @@ public class FirmwareListCellRenderer implements ListCellRenderer {
     		if (f.getController().equals(KKMulticopterFlashTool.WIIESC) || f.getController().equals(KKMulticopterFlashTool.WIIESC_EEPROM)){
     			line1 = new JLabel(f.getName() +  " " + f.getVersion() + " " + f.getVersionName() + " by " + f.getAuthor());
     		} else {
-    			line1 = new JLabel(f.getName() +  " V" + f.getVersion() + " " + f.getVersionName() + " by " + f.getAuthor());
+    			String versionPrefix = f.getVersion().startsWith("daily")?" ":" V";
+    			line1 = new JLabel(f.getName() + versionPrefix + f.getVersion() + " " + f.getVersionName() + " by " + f.getAuthor());
     		}
     		line1.setForeground(fg);
     		JLabel line2 = new JLabel(f.getServer());

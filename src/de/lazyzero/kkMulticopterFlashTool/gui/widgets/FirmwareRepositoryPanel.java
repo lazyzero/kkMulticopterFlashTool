@@ -154,7 +154,7 @@ public class FirmwareRepositoryPanel extends JPanel implements ActionListener, P
 			parent.println(_("messages.reloadList"));
 			
 			try {
-				firmwareLoader.reloadXmlFile(new URL(firmwareLoader.getURL()));
+				firmwareLoader.reloadXmlFile(firmwareLoader.getURL());
 			} catch (Exception e) {
 				parent.println(_("messages.reloadList.error"));
 				e.printStackTrace();

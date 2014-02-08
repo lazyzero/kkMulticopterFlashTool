@@ -1,0 +1,542 @@
+<firmwares>
+  <firmware name="Afro" value="daily">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://afro.hex" />
+    <md5 value="66a325196a5b0899c9b2fb6ea3efd300" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="Afro" value="daily reverse">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://afro_reverse.hex" />
+    <md5 value="c7071e6ddc596d0677764dc5440d02e5" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="Afro 2" value="daily">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://afro2.hex" />
+    <md5 value="91d057441f57fa59a7228278b284d8db" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="Afro 2" value="daily reverse">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://afro2_reverse.hex" />
+    <md5 value="cc22d182b8d6ee2ae7c04bbe4e5aced9" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="Afro HV" value="daily">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://afro_hv.hex" />
+    <md5 value="0b0d4515a0fcf0fd7288a17b96708e88" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="Afro HV" value="daily reverse">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://afro_hv_reverse.hex" />
+    <md5 value="10d5d00912ff2d6e0300f73807cbd0a2" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="Afro NFET" value="daily">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://afro_nfet.hex" />
+    <md5 value="51841290358ab9b52f6064443be66891" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="Afro NFET" value="daily reverse">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://afro_nfet_reverse.hex" />
+    <md5 value="c3316e447cfa6fa7a278fe6c21617629" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="ArcticTiger" value="daily">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://arctictiger.hex" />
+    <md5 value="9db52b3e0c64ce4102314f7db24a44bc" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="ArcticTiger" value="daily reverse">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://arctictiger_reverse.hex" />
+    <md5 value="0a4bad35bb451c5078be7e8940d58e63" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="Birdie 70A" value="daily">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://birdie70a.hex" />
+    <md5 value="b2458be64c6e6a1a30ef231f4d2eb83f" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="Birdie 70A" value="daily reverse">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://birdie70a_reverse.hex" />
+    <md5 value="d58a97101a43baeb8b776af3917a0f93" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="BS" value="daily">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://bs.hex" />
+    <md5 value="bbd0e3074c788ce94322d8f935b38976" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="BS" value="daily reverse">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://bs_reverse.hex" />
+    <md5 value="6de6a1b3c5274cbcc7532d3ae29f67e9" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="BS N-FET" value="daily">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://bs_nfet.hex" />
+    <md5 value="c7ceabbbb9f5beb0868f11893486f2cf" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="BS N-FET" value="daily reverse">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://bs_nfet_reverse.hex" />
+    <md5 value="5df6160430add1255eb2d5ab162bf778" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="BS 40A" value="daily">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://bs40a.hex" />
+    <md5 value="e61d9d927b1f0c522c940be5124c753d" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="BS 40A" value="daily reverse">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://bs40a_reverse.hex" />
+    <md5 value="eb9a96086a3cbd9f31216cc9ad96791e" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="DLU40A" value="daily">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://dlu40a.hex" />
+    <md5 value="5c383d06923e44e7f28399d86dde9594" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="DLU40A" value="daily reverse">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://dlu40a_reverse.hex" />
+    <md5 value="eeff426a3b54758ecda4e2f2a56dae61" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="dlux" value="daily">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://dlux.hex" />
+    <md5 value="5e86c5e0559a15ce94b9a829a25fd2ad" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="dlux" value="daily reverse">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://dlux_reverse.hex" />
+    <md5 value="de945521204485bd5a062ac0ff6ad306" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="DYS N-FET" value="daily">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://dys_nfet.hex" />
+    <md5 value="6cf99bf36922ad67909822928c65eac6" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="DYS N-FET" value="daily reverse">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://dys_nfe_treverse.hex" />
+    <md5 value="N/A" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="HK 200A" value="daily">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://hk200a.hex" />
+    <md5 value="9b7d1271c591a0cc02b6adae53788d7f" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="HK 200A" value="daily reverse">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://hk200a_reverse.hex" />
+    <md5 value="0f378dd205e630e4481b7e3f81951ff7" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="Hacker/Jeti Master 135-O-F5B (hm135a)" value="daily">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://hm135a.hex" />
+    <md5 value="2fec3c7cedc846cf7fcbf3a7897a3d8e" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="Hacker/Jeti Master 135-O-F5B (hm135a)" value="daily reverse">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://hm135a_reverse.hex" />
+    <md5 value="1098b61ef021e22f48f01f85f5c99504" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="Keda (kda)" value="daily">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://kda.hex" />
+    <md5 value="a96e4983470de8edbf4135e39ea7c33f" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="Keda (kda)" value="daily reverse">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://kda_reverse.hex" />
+    <md5 value="a1af2e50bbb36213096ade64eb12b478" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="MK BL-Ctrl V1.2 (mkblctrl1)" value="daily">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://mkblctrl1.hex" />
+    <md5 value="03ee7ce77f6d07eb4be26d4c3d6224a8" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="MK BL-Ctrl V1.2 (mkblctrl1)" value="daily reverse">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://mkblctrl1_reverse.hex" />
+    <md5 value="6a6acf95ade9c6d228b4bc0cfa5e28c7" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="RB 50A" value="daily">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://rb50a.hex" />
+    <md5 value="8d818c2ebc439721737b79c4f79fc18a" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="RB 50A" value="daily reverse">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://rb50a_reverse.hex" />
+    <md5 value="16c3b176df9036b737a21e8d4a55bed0" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="RB 70A" value="daily">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://rb70a.hex" />
+    <md5 value="26f98386d2a260ad1d1641f7df51b95b" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="RB 70A" value="daily reverse">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://rb70a_reverse.hex" />
+    <md5 value="886df02429b808aa6846d64bf11e1a6f" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="RC Timer 50A" value="daily">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://rct50a.hex" />
+    <md5 value="bfd09da430e51ef0cfcadb7e084561f2" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="RC Timer 50A" value="daily reverse">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://rct50a_reverse.hex" />
+    <md5 value="3a7158b6509a2484c73ad70d73b24edd" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="TBS" value="daily">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://tbs.hex" />
+    <md5 value="87c5644cfad24100c52b22a753d244f9" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="TBS" value="daily reverse">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://tbs_reverse.hex" />
+    <md5 value="711cc139f649281e4980679cfbf21ed9" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="TGY" value="daily">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://tgy.hex" />
+    <md5 value="ef012524f4d5a72c36095398cd77f16d" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="TGY" value="daily reverse">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://tgy_reverse.hex" />
+    <md5 value="77baf2d7dd27bd1bca06701810782f1c" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="TGY 6A" value="daily">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://tgy6a.hex" />
+    <md5 value="5b5f1d68dac89337231fe6e6b85d97c8" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="TGY 6A" value="daily reverse">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://tgy6a_reverse.hex" />
+    <md5 value="c4da08b8e1f7d992b07293586473807d" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="TP" value="daily">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://tp.hex" />
+    <md5 value="c86578de129df4c5c542d54e12d38bcd" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="TP" value="daily reverse">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://tp_reverse.hex" />
+    <md5 value="364447c99ebe746d17dd35e42c1c6e13" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="TP 70A" value="daily">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://tp70a.hex" />
+    <md5 value="f8919d6e1e9463f573283453feb3b8f9" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="TP 70A" value="daily reverse">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://tp70a_reverse.hex" />
+    <md5 value="c4d65d7f8611f674897ef5ffd01292ff" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="TP 8kHz" value="daily">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://tp_8khz.hex" />
+    <md5 value="d99934b17d1aa253ae788e67767ee5c1" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="TP 8kHz" value="daily reverse">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://tp_8khz_reverse.hex" />
+    <md5 value="3ef6413559d9ca248f4d349f5a66fafb" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="TP I2C" value="daily">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://tp_i2c.hex" />
+    <md5 value="705bfdc5eae7dfffa25e885fb78dda13" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="TP I2C" value="daily reverse">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://tp_i2c_reverse.hex" />
+    <md5 value="29f0bb5320e0d6dc5e88a0c1a47ab4ab" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="TP N-FET" value="daily">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://tp_nfet.hex" />
+    <md5 value="b2075a1278d16ee8016b23ea266d7581" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+  <firmware name="TP N-FET" value="daily reverse">
+    <author name="Simon Kirby" />
+    <server name="mirrored by LazyZero" />
+    <controller name="esc" target="1" />
+    <zipfile url="http://lazyzero.de/_media/modellbau/kkmulticopterflashtool/esc_firmware/tgy-daily.zip" />
+    <file url="file://tp_nfet_reverse.hex" />
+    <md5 value="1c9ce28a75eb3999c877e0c8e61b4655" />
+    <additionalOptions option="-e" />
+    <commenturl url="http://tinyurl.com/7z9xdjq" />
+  </firmware>
+</firmwares>

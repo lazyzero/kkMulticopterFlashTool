@@ -1,5 +1,5 @@
 <project name="kkMulticopterFlashTool" default="default" basedir=".">
-	<property name="version" value="0.77beta4" />
+	<property name="version" value="0.77beta5" />
 	 <!-- Set this property value to your application name -->
 	<property name="app.name" value="kkMulticopter Flash Tool"/>
 	<property name="dist.dir" value="${basedir}/dist" />
