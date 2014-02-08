@@ -250,18 +250,24 @@ public class Firmware {
 		String tmpdir = null;
 		
 		String urlPath = url.getPath();
-		filename = urlPath.substring(urlPath.lastIndexOf("/")+1);
+		filename = urlPath.substring(urlPath.lastIndexOf("/")+1).trim();
 		System.out.println("Download file: "+filename);
 		
         tmpdir = KKMulticopterFlashTool.getTempFolder();
-        filename = tmpdir + filename;
         	
-		File tmpFile = new File(filename);
+		File tmpFile = null;
+		if (!filename.equals("tgy-daily.zip")) {
+			filename = tmpdir + filename;
+			tmpFile = new File(filename);
+		} else {
+			logger.info("delete old tgy-daily.zip");
+		}
 		if ((new File(tmpdir)).mkdir()) System.out.println("tmpdir created");
 		
-		if (!tmpFile.exists()) {
+		if (tmpFile == null || !tmpFile.exists()) {
     		try {
-    			
+    			filename = tmpdir + filename;
+    			tmpFile = new File(filename); // not nice but necessary to have a download location
     			BufferedInputStream in = new BufferedInputStream(url.openStream());
     			FileOutputStream fos = new FileOutputStream(tmpFile);
     			BufferedOutputStream bout = new BufferedOutputStream(fos,1024);
