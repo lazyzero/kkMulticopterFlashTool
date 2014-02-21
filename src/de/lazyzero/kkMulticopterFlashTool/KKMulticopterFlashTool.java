@@ -167,6 +167,7 @@ public class KKMulticopterFlashTool extends JFrame implements
 	private EEpromSettingsPanel eepromSettingsPanel;
 	protected boolean successful;
 	private Vector<ButtonsStateListener> listeners = new Vector<ButtonsStateListener>();
+	private boolean isNoLogging = false;
 
 	public KKMulticopterFlashTool(String[] args) {
 
@@ -179,7 +180,7 @@ public class KKMulticopterFlashTool extends JFrame implements
 			LOG_FILE = new File(getTempFolder(),"kkLogging.txt");
 		}
 		
-		initLogger();
+		if (!isNoLogging ) initLogger();
 		
 		SplashScreen splash = SplashScreen.getSplashScreen();
 		if (splash==null) {
@@ -219,6 +220,7 @@ public class KKMulticopterFlashTool extends JFrame implements
 	        options.addOption("h", "help", false, "Show this help message.");
 	        options.addOption("c", "color", false, "Use default colors of the Java VM.");
 	        options.addOption("p", "portcheck", false, "Disable checking for port checking.");
+	        options.addOption("n", "nologging", false, "Disable logging to file.");
 	     
 	        try {
 	            CommandLineParser parser = new PosixParser();
