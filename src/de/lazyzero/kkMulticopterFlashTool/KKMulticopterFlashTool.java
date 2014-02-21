@@ -168,6 +168,7 @@ public class KKMulticopterFlashTool extends JFrame implements
 	protected boolean successful;
 	private Vector<ButtonsStateListener> listeners = new Vector<ButtonsStateListener>();
 	private boolean isNoLogging = false;
+	private boolean useDefaults = false;
 
 	public KKMulticopterFlashTool(String[] args) {
 
@@ -221,6 +222,7 @@ public class KKMulticopterFlashTool extends JFrame implements
 	        options.addOption("c", "color", false, "Use default colors of the Java VM.");
 	        options.addOption("p", "portcheck", false, "Disable checking for port checking.");
 	        options.addOption("n", "nologging", false, "Disable logging to file.");
+	        options.addOption("d", "defaults", false, "Use default settings");
 	     
 	        try {
 	            CommandLineParser parser = new PosixParser();
@@ -239,6 +241,15 @@ public class KKMulticopterFlashTool extends JFrame implements
 	            if (cmd.hasOption("p")) {
 	            	ENABLE_PORT_CHECK = false;
 	            }
+	            
+	            if (cmd.hasOption("n")) {
+	            	isNoLogging = true;
+	            }
+	            
+	            if (cmd.hasOption("d")) {
+	            	useDefaults  = true;
+	            }
+	            
 	            
 	            	
 	        } catch (ParseException exp) {
@@ -613,38 +624,40 @@ public class KKMulticopterFlashTool extends JFrame implements
 	}
 
 	private void saveSettings() {
-		try {
-			settings.put("locale.language", locale.getLanguage());
-			settings.put("locale.country", locale.getCountry());
-
-			settings.put("offlineMode", offlineMode+"");
-			settings.put("isPopupEnabled", isPopupsEnabled+"");
-			settings.put("isHideDeprecated", isHideDeprecated+"");
-			settings.put("isShowDailyTGYEnabled", isShowDailyTGYEnabled+"");
-			
-			settings.put("countdown", countdown+"");
-			
-			settings.put("programmer", programmer.getId());
-			settings.put("port", programmerPanel.getPort());
-			settings.put("rate", programmerPanel.getRate());
-			settings.put("defaultRate", programmerPanel.isDefaultRate()+"");
-			settings.put("controller", controller.getName());
-
-			Iterator<String> keys = firmwareRepositoryURL.keySet().iterator();
-			while (keys.hasNext()) {
-				String key = keys.next();
-				settings.put(key, firmwareRepositoryURL.get(key));
-			}
-			
+		if (!useDefaults) {
 			try {
-				settings.put("last.dir", firmware.getFile().getPath());
+				settings.put("locale.language", locale.getLanguage());
+				settings.put("locale.country", locale.getCountry());
+				
+				settings.put("offlineMode", offlineMode+"");
+				settings.put("isPopupEnabled", isPopupsEnabled+"");
+				settings.put("isHideDeprecated", isHideDeprecated+"");
+				settings.put("isShowDailyTGYEnabled", isShowDailyTGYEnabled+"");
+				
+				settings.put("countdown", countdown+"");
+				
+				settings.put("programmer", programmer.getId());
+				settings.put("port", programmerPanel.getPort());
+				settings.put("rate", programmerPanel.getRate());
+				settings.put("defaultRate", programmerPanel.isDefaultRate()+"");
+				settings.put("controller", controller.getName());
+				
+				Iterator<String> keys = firmwareRepositoryURL.keySet().iterator();
+				while (keys.hasNext()) {
+					String key = keys.next();
+					settings.put(key, firmwareRepositoryURL.get(key));
+				}
+				
+				try {
+					settings.put("last.dir", firmware.getFile().getPath());
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+				
+				settings.store(new FileOutputStream(SETTINGS_FILE), "");
 			} catch (Exception e) {
-				// TODO: handle exception
+				e.printStackTrace();
 			}
-
-			settings.store(new FileOutputStream(SETTINGS_FILE), "");
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 	}
 
