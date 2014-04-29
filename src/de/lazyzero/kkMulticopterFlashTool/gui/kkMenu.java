@@ -340,6 +340,12 @@ public class kkMenu extends JMenuBar {
 		
 		setup.addSeparator();
 		
+		final JCheckBoxMenuItem enableVerboseOutputMenuItem = new JCheckBoxMenuItem(_("settings.enableverbose"));
+		enableVerboseOutputMenuItem.setSelected(KKMulticopterFlashTool.isVerboseEnabled());
+		setup.add(enableVerboseOutputMenuItem);
+
+		setup.addSeparator();
+		
 		final JCheckBoxMenuItem enablePopupMenuItem = new JCheckBoxMenuItem(_("settings.enablepopup"));
 		enablePopupMenuItem.setSelected(KKMulticopterFlashTool.isPopupsEnabled());
 		setup.add(enablePopupMenuItem);
@@ -416,6 +422,19 @@ public class kkMenu extends JMenuBar {
 							KKMulticopterFlashTool.setOfflineMode(false);
 						}
 						parent.firePropertyChange(KKMulticopterFlashTool.MODE_CHANGED, 0, 1);
+					}
+				}
+			);
+		
+		enableVerboseOutputMenuItem.addActionListener(
+				new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						if (enableVerboseOutputMenuItem.isSelected()) {
+							KKMulticopterFlashTool.setVerboseEnabled(true);
+						} else {
+							KKMulticopterFlashTool.setVerboseEnabled(false);
+						}
 					}
 				}
 			);

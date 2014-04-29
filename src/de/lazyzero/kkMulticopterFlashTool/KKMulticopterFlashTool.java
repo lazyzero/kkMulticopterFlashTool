@@ -101,7 +101,7 @@ public class KKMulticopterFlashTool extends JFrame implements
 	private static final long serialVersionUID = 1L;
 	public static String VERSION = "0.77";
 	private static boolean isBeta = true;
-	private static int betaVersion = 7;
+	private static int betaVersion = 9;
 	public static final String MODE_CHANGED = "changed";
 	public static final String KKPLUSBOOT = "kkplusboot";
 	public static final String FLYCAM_BLACKBOARD = "flycam_black";
@@ -159,6 +159,7 @@ public class KKMulticopterFlashTool extends JFrame implements
 	private static int countdown;
 	private static boolean isHideDeprecated;
 	private static boolean isShowDailyTGYEnabled;
+	private static boolean isVerbose;
 	private JTabbedPane tabbedPane = new JTabbedPane();
 	//private TestPanel testPanel;
 	private JPanel programmingPanel;
@@ -314,6 +315,11 @@ public class KKMulticopterFlashTool extends JFrame implements
 						e1.printStackTrace();
 						logger.log(Level.WARNING, e1.getMessage());
 					}
+					
+					if(isVerbose) {
+						control.addAdditionalOption("-vvvvv ");
+					}
+					
 					control.setPort(programmerPanel.getPort());
 					control.setProgrammer(programmer);
 					if (programmerPanel.useBaudRate()) {
@@ -470,6 +476,11 @@ public class KKMulticopterFlashTool extends JFrame implements
 						e1.printStackTrace();
 						logger.log(Level.WARNING, e1.getMessage());
 					}
+					
+					if(isVerbose) {
+						control.addAdditionalOption("-vvvvv ");
+					}
+					
 					control.setPort(programmerPanel.getPort());
 					control.setProgrammer(programmer);
 					if (programmerPanel.useBaudRate()) {
@@ -595,6 +606,7 @@ public class KKMulticopterFlashTool extends JFrame implements
 			offlineMode = new Boolean(settings.getProperty("offlineMode","false"));
 			isPopupsEnabled = new Boolean(settings.getProperty("isPopupEnabled","true"));
 			isHideDeprecated = new Boolean(settings.getProperty("isHideDeprecated","false"));
+			isVerbose = new Boolean(settings.getProperty("isVerbose","false"));
 			isShowDailyTGYEnabled = new Boolean(settings.getProperty("isShowDailyTGYEnabled", "false"));
 			countdown = Integer.parseInt(settings.getProperty("countdown", "0"));
 			
@@ -632,6 +644,7 @@ public class KKMulticopterFlashTool extends JFrame implements
 				settings.put("offlineMode", offlineMode+"");
 				settings.put("isPopupEnabled", isPopupsEnabled+"");
 				settings.put("isHideDeprecated", isHideDeprecated+"");
+				settings.put("isVerbose", isVerbose+"");
 				settings.put("isShowDailyTGYEnabled", isShowDailyTGYEnabled+"");
 				
 				settings.put("countdown", countdown+"");
@@ -671,7 +684,7 @@ public class KKMulticopterFlashTool extends JFrame implements
 		}
 		programmers = avrConfig.getProgrammerList();
 
-		avrs.add(new AVR("HobbyKing KK2.1", "64kB flash", "m644p", 2048, null, null));
+		avrs.add(new AVR("HobbyKing KK2.1 and KK2.1.5", "64kB flash", "m644p", 2048, null, null));
 		
 		avrs.add(new AVR("HobbyKing KK2.0", "32kB flash", "m324pa", 1024, null, null));
 		avrs.add(new AVR("HobbyKing KK2.0 (fuse restore)", "32kB flash", "m324pa", 1024, "0xf7", "0xd7", "0xfc"));
@@ -1090,9 +1103,16 @@ public class KKMulticopterFlashTool extends JFrame implements
 		isHideDeprecated = hideDeprecated;
 	}
 
-
 	public static boolean isHideDecprecatedEnabled() {
 		return isHideDeprecated;
+	}
+	
+	public static void setVerboseEnabled(boolean verbose) {
+		isVerbose = verbose;
+	}
+
+	public static boolean isVerboseEnabled() {
+		return isVerbose;
 	}
 
 	public static void setShowDailyTGYEnabled(boolean showDailyTGYEnabled) {
