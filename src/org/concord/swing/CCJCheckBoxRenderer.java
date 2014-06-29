@@ -24,12 +24,9 @@
 package org.concord.swing;
 
 import java.awt.Component;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 import javax.swing.Icon;
 import javax.swing.JCheckBox;
-import javax.swing.JLabel;
 import javax.swing.JTree;
 import javax.swing.UIManager;
 import javax.swing.tree.DefaultMutableTreeNode;

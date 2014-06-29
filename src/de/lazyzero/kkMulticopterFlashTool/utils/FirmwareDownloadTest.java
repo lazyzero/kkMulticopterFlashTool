@@ -36,7 +36,7 @@ public class FirmwareDownloadTest {
 
 	public static void main (String[] args) {
 	
-		firmwareRepositoryURL = System.getProperty("user.dir")+"/firmwares.xml.simonk20140306";//"/tgy_daily.xml";//.simonk10062012";
+		firmwareRepositoryURL = System.getProperty("user.dir")+"/firmwares.xml.flightstab_20140208";//.simonk10062012";
 		
 		firmwareReader = new XmlReaderFirmwares();
 		try {
@@ -52,7 +52,7 @@ public class FirmwareDownloadTest {
 					if (null != f) {
 						File fExtract = new File(firmware.getFileURL().toString().substring(7).trim());
 						try {
-							File file = Zip.unzip(f, fExtract);
+							File file = Zip.unzipFile(f, fExtract);
 							md5Calculated  = MD5.getMD5(file);
 						} catch (Exception e) {
 							System.err.println("File corrupt.");

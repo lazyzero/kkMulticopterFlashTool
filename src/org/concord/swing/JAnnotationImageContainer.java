@@ -23,20 +23,16 @@
 
 package org.concord.swing;
 
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.KeyboardFocusManager;
-import java.awt.KeyEventDispatcher;
-import java.awt.FlowLayout;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Point;
 import java.awt.image.BufferedImage;
-
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.ListIterator;
@@ -46,16 +42,16 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
+import javax.swing.AbstractButton;
+import javax.swing.BorderFactory;
+import javax.swing.Icon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JToolBar;
-import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
-import javax.swing.AbstractButton;
-import javax.swing.Icon;
-import javax.swing.BorderFactory;
 import javax.swing.border.Border;
 
 import org.concord.swing.JAnnotationImageModel.AnnotationSpot;

@@ -33,7 +33,6 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 import de.lazyzero.kkMulticopterFlashTool.KKMulticopterFlashTool;
 
 public class Firmware {
@@ -125,7 +124,7 @@ public class Firmware {
 		        	
 				File tmpFile = new File(tmpdir + filename);
 				File fExtract = new File(url.toString().substring(7).trim());
-				this.file = Zip.unzip(tmpFile, fExtract);
+				this.file = Zip.unzipFile(tmpFile, fExtract);
 				this.md5Calculated = MD5.getMD5(file);
 			} else if (url != null) {
 				String filename = null;
@@ -153,7 +152,7 @@ public class Firmware {
 		        	
 				File tmpFile = new File(tmpdir + filename);
 				File fExtract = new File(url.toString().substring(7).trim());
-				this.eepromFile = Zip.unzip(tmpFile, fExtract);
+				this.eepromFile = Zip.unzipFile(tmpFile, fExtract);
 				this.eepromMD5Calculated = MD5.getMD5(eepromFile);
 			} else if (eepromUrl != null) {
 				String filename = null;
@@ -173,7 +172,7 @@ public class Firmware {
 			if (zipURL != null) {
 				File f = this.downloadFile(zipURL);
 				File fExtract = new File(url.toString().substring(7).trim());
-				this.file = Zip.unzip(f, fExtract);
+				this.file = Zip.unzipFile(f, fExtract);
 				this.md5Calculated = MD5.getMD5(file);
 			} else if (svnUrl != null) {
 				System.out.println("debug svn: " + svnUrl.toString());
@@ -195,7 +194,7 @@ public class Firmware {
 			} else if (eepromZipUrl != null) {
 				File f = this.downloadFile(eepromZipUrl);
 				File fExtract = new File(eepromUrl.toString().substring(7).trim());
-				this.eepromFile = Zip.unzip(f, fExtract);
+				this.eepromFile = Zip.unzipFile(f, fExtract);
 				this.eepromMD5Calculated = MD5.getMD5(eepromFile);
 			} else if (svnEEpromUrl != null) { 
 				System.out.println("debug svn: " + svnEEpromUrl.toString());
@@ -248,7 +247,7 @@ public class Firmware {
 	private File downloadFile(URL url){
 		String filename = null;
 		String tmpdir = null;
-		boolean forceReload = false;
+		boolean reload = false;
 		
 		String urlPath = url.getPath();
 		filename = urlPath.substring(urlPath.lastIndexOf("/")+1).trim();
@@ -258,14 +257,14 @@ public class Firmware {
         	
         filename = tmpdir + filename;
         File tmpFile = new File(filename);
-		
 		if (filename.endsWith("tgy-daily.zip")) {
-			forceReload = true;
-			System.out.println("force reload");
+			reload = true;
+			System.out.println("reload file: " + tmpFile.getName());
 		} 
+		
 		if ((new File(tmpdir)).mkdir()) System.out.println("tmpdir created");
 		
-		if (!tmpFile.exists() || forceReload) {
+		if (!tmpFile.exists() || reload) {
     		try {
     			BufferedInputStream in = new BufferedInputStream(url.openStream());
     			FileOutputStream fos = new FileOutputStream(tmpFile);

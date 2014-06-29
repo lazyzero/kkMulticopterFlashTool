@@ -29,7 +29,6 @@
 package org.concord.swing;
 import java.awt.Point;
 import java.util.Vector;
-//http://www.cs.princeton.edu/~ah/alg_anim/version1/QuickHull.html
 
 /**
  * class that implements QuickHull algorithm to construct convex hull polygon<br>

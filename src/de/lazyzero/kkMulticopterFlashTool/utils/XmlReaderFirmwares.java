@@ -86,7 +86,9 @@ public class XmlReaderFirmwares {
     				if (key.equals("tgydaily")) {
     					if (KKMulticopterFlashTool.isShowDailyTGYEnabled()) {
     						load = true;
-    					} 
+    					} else {
+    						load = false;
+    					}
     				} else {    
     					load = true;
     				}
@@ -470,15 +472,27 @@ public class XmlReaderFirmwares {
 
 	public void reloadXmlFile(LinkedHashMap<String, String> urls) throws Exception {
 		this.firmwareRepositories = urls;
+		this.firmwares.removeAllElements();
 	
 		Iterator<String> keys = firmwareRepositories.keySet().iterator();
 		while (keys.hasNext()) {
 			String key = keys.next();
 			String url = firmwareRepositories.get(key);
-		
-			downloadFirmwareDescription(new URL(url));
-			String uri = getLocalXMLFile(url.substring(url.lastIndexOf('/')+1));
-			readXmlFile(uri);
+			boolean load = false;
+			if (key.equals("tgydaily")) {
+				if (KKMulticopterFlashTool.isShowDailyTGYEnabled()) {
+					load = true;
+				} else {
+					load = false;
+				}
+			} else {    
+				load = true;
+			}
+			if (load) {
+				downloadFirmwareDescription(new URL(url));
+				String uri = getLocalXMLFile(url.substring(url.lastIndexOf('/') + 1));
+				readXmlFile(uri);
+			}
 		}
 	}
 

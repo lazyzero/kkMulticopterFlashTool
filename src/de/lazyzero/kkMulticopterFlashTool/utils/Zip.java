@@ -22,19 +22,23 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 
 import lu.tudor.santec.i18n.Translatrix;
+
+import org.apache.commons.io.FileExistsException;
+
 import de.lazyzero.kkMulticopterFlashTool.KKMulticopterFlashTool;
 
 public class Zip {
 	
 	static KKMulticopterFlashTool kk = KKMulticopterFlashTool.getInstance();
 
-	public static File unzip(File zipFile, File file) {
+	public static File unzipFile(File zipFile, File file) {
 		System.out.println("path to zipFile: " + zipFile.getPath());
 		System.out.println("file to extract: " + file.getPath());
 		String fileName = null;
@@ -94,11 +98,68 @@ public class Zip {
 	      }	catch(Exception e) {
 	         e.printStackTrace();
 	      }
-		
-		
-		
-		
+				
 		return new File(fileName);
+	}
+
+	public static void unzip2folder(File zipFile, File toFolder) throws FileExistsException {
+		if(!toFolder.exists()) {
+			toFolder.mkdirs();
+		} else if (toFolder.isFile()){
+			throw new FileExistsException(toFolder.getName());
+		}
+		
+		try {
+			ZipEntry entry;
+			@SuppressWarnings("resource")
+			ZipFile zipfile = new ZipFile(zipFile);
+			Enumeration<? extends ZipEntry> e = zipfile.entries();
+			while (e.hasMoreElements()) {
+				entry = e.nextElement();
+
+//				String newDir;
+//				if (entry.getName().indexOf("/") == -1) {
+//					newDir = zipFile.getName().substring(0, zipFile.getName().indexOf("."));
+//				} else {
+//					newDir = entry.getName().substring(0, entry.getName().indexOf("/"));
+//				}
+//				String folder = toFolder + (File.separatorChar+"") + newDir;
+//				System.out.println(folder);
+//				if ((new File(folder).mkdir())) {
+//					System.out.println("Done.");
+//				}
+				System.out.println("Extracting: " +entry);
+				if (entry.isDirectory()) {
+					new File(toFolder + (File.separatorChar+"") + entry.getName()).mkdir();
+				} else {
+					BufferedInputStream is = new BufferedInputStream(zipfile.getInputStream(entry));
+					int count;
+					byte data[] = new byte[2048];
+					String fileName = toFolder + (File.separatorChar+"") + entry.getName();
+					FileOutputStream fos = new FileOutputStream(fileName);
+					BufferedOutputStream dest = new BufferedOutputStream(fos, 2048);
+					while ((count = is.read(data, 0, 2048)) 
+							!= -1) {
+						dest.write(data, 0, count);
+					}
+					dest.flush();
+					dest.close();
+					is.close();
+					System.out.println("extracted to: " + fileName);
+				}
+				
+			}
+		} catch (ZipException e1) {
+			zipFile.delete();
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} finally {
+			
+		}
+	 
+	        
 	}
 
 }

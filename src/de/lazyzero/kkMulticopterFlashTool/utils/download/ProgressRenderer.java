@@ -17,9 +17,11 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package de.lazyzero.kkMulticopterFlashTool.utils.download;
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.table.*;
+import java.awt.Component;
+
+import javax.swing.JProgressBar;
+import javax.swing.JTable;
+import javax.swing.table.TableCellRenderer;
 
 // This class renders a JProgressBar in a table cell.
 public class ProgressRenderer extends JProgressBar

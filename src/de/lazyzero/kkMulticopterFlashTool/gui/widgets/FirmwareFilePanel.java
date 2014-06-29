@@ -127,18 +127,9 @@ public class FirmwareFilePanel extends JPanel implements ActionListener, Buttons
 			int returnVal = fc.showOpenDialog(this);
 
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
-				firmwareFile = fc.getSelectedFile();
-				// This is where a real application would open the file.
-				firmwareFileField.setText(firmwareFile.getName());
-				parent.setFirmware(new Firmware(firmwareFile));
-				parent.clearText();
-				parent.println(_("messages.loadFile"));
-				flashFile.setEnabled(true);
+				setHexFile(fc.getSelectedFile(), true);
 			} else {
-				firmwareFileField.setText("");
-				parent.clearText();
-				parent.println(_("messages.nothingLoad"));
-				flashFile.setEnabled(false);
+				resetFile();
 			}
 		} else if (action.getSource().equals(flashFile)){
 			parent.clearText();
@@ -149,6 +140,28 @@ public class FirmwareFilePanel extends JPanel implements ActionListener, Buttons
 				parent.flashAVR();
 			}
 		} 
+	}
+	
+	public void setHexFile(File file, boolean clearContent) {
+		if (file == null) {
+			resetFile();
+			return;
+		}
+		firmwareFile = file;
+		firmwareFileField.setText(firmwareFile.getName());
+		parent.setFirmware(new Firmware(firmwareFile));
+		if (clearContent) {
+			parent.clearText();
+		}
+		parent.println(_("messages.loadFile"));
+		flashFile.setEnabled(true);
+	}
+	
+	public void resetFile() {
+		firmwareFileField.setText("");
+		parent.clearText();
+		parent.println(_("messages.nothingLoad"));
+		flashFile.setEnabled(false);
 	}
 
 

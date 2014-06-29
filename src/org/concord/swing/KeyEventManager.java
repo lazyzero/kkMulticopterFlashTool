@@ -25,8 +25,6 @@ package org.concord.swing;
 import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
 
-import org.concord.swing.SwingKeyEventDispatcher;
-
 public class KeyEventManager
 {
 

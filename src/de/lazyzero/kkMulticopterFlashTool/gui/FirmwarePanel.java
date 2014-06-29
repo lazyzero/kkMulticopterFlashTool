@@ -18,13 +18,14 @@
  */
 package de.lazyzero.kkMulticopterFlashTool.gui;
 
+import static lu.tudor.santec.i18n.Translatrix._;
+
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.File;
 
 import javax.swing.JTabbedPane;
 import javax.swing.border.TitledBorder;
-
-import static lu.tudor.santec.i18n.Translatrix._;
 
 import de.lazyzero.kkMulticopterFlashTool.KKMulticopterFlashTool;
 import de.lazyzero.kkMulticopterFlashTool.gui.widgets.FirmwareFilePanel;
@@ -54,8 +55,8 @@ public class FirmwarePanel extends JTabbedPane implements ButtonsStateListener, 
 		firmwarefilePanel = new FirmwareFilePanel(parent);
 		firmwareRepositoryPanel = new FirmwareRepositoryPanel(parent, firmwareLoader);
 		
-		this.addTab("Repository", firmwareRepositoryPanel);
-		this.addTab("File", firmwarefilePanel);
+		this.addTab(_("firmwarepanel.repository"), firmwareRepositoryPanel);
+		this.addTab(_("firmwarepanel.file"), firmwarefilePanel);
 		
 		this.setBorder(new TitledBorder(_("Flashing")+"..."));
 		
@@ -82,6 +83,9 @@ public class FirmwarePanel extends JTabbedPane implements ButtonsStateListener, 
 		}
 	}
 
-	
+	public void setHexFile(File file, boolean clearContent) {
+		firmwarefilePanel.setHexFile(file, clearContent);
+		this.setSelectedIndex(this.indexOfTab(_("firmwarepanel.file")));
+	}
 
 }

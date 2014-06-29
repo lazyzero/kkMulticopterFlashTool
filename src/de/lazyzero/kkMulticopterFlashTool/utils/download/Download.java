@@ -18,9 +18,12 @@
  */
 package de.lazyzero.kkMulticopterFlashTool.utils.download;
 
-import java.io.*;
-import java.net.*;
-import java.util.*;
+import java.io.InputStream;
+import java.io.RandomAccessFile;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Date;
+import java.util.Observable;
 
 import de.lazyzero.kkMulticopterFlashTool.KKMulticopterFlashTool;
 

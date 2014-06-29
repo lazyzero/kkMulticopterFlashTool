@@ -1,5 +1,5 @@
 <project name="kkMulticopterFlashTool" default="default" basedir=".">
-	<property name="version" value="0.77beta9" />
+	<property name="version" value="0.80beta2" />
 	 <!-- Set this property value to your application name -->
 	<property name="app.name" value="kkMulticopter Flash Tool"/>
 	<property name="dist.dir" value="${basedir}/dist" />
@@ -88,6 +88,7 @@
 		<zip destfile="kkmulticopterflashtool_${version}.zip">
 		    <zipfileset dir="${libs}" prefix="lib" filemode="755">
 		    	<exclude name="**/avrdude/mac/**"/>
+		    	<exclude name="**/avra/mac/**"/>
 		    </zipfileset>
 			<zipfileset dir="${src.dir}" prefix="src"/>
 		    <zipfileset dir="." includes="license.txt"/>
@@ -127,6 +128,8 @@
 				<exclude name="lib/avrdude/linux/**/*" />
 				<exclude name="lib/avrdude/linux64/**/*" />
 				<exclude name="lib/avrdude/windows/**/*" />
+				<exclude name="lib/avra/linux/**/*" />
+				<exclude name="lib/avra/win/**/*" />
 				<exclude name="lib/linux32/**/*" />
 				<exclude name="lib/linux64/**/*" />
 				<exclude name="lib/win32/**/*" />
@@ -209,6 +212,10 @@
 		<exec executable="/bin/chmod" os="Mac OS X" failonerror="true">
 					      <arg value="a+x"/>
 					      <arg value="${mountdir}/${app.name}/${app.name}.app/Contents/Resources/Java/lib/avrdude/mac/usbtiny/avrdude"/>
+					    </exec>
+		<exec executable="/bin/chmod" os="Mac OS X" failonerror="true">
+					      <arg value="a+x"/>
+					      <arg value="${mountdir}/${app.name}/${app.name}.app/Contents/Resources/Java/lib/avra/mac/avra"/>
 					    </exec>
 
 	    <!-- Detach the temporary image -->

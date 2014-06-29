@@ -29,7 +29,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.net.URL;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Vector;
@@ -150,6 +149,7 @@ public class FirmwareRepositoryPanel extends JPanel implements ActionListener, P
 			parent.clearText();
 			updateComboboxes();
 		} else if (action.getSource().equals(reload)){
+			item = firmwareCategoryCombobox.getSelectedIndex();
 			parent.clearText();
 			parent.println(_("messages.reloadList"));
 			

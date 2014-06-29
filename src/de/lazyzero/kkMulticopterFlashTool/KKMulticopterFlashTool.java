@@ -78,6 +78,7 @@ import de.lazyzero.kkMulticopterFlashTool.gui.EEpromResetPanel;
 import de.lazyzero.kkMulticopterFlashTool.gui.EEpromSettingsPanel;
 import de.lazyzero.kkMulticopterFlashTool.gui.FirmwarePanel;
 import de.lazyzero.kkMulticopterFlashTool.gui.ProgrammerPanel;
+import de.lazyzero.kkMulticopterFlashTool.gui.SimonkEditorPanel;
 import de.lazyzero.kkMulticopterFlashTool.gui.kkMenu;
 import de.lazyzero.kkMulticopterFlashTool.utils.ArduinoUpload;
 import de.lazyzero.kkMulticopterFlashTool.utils.ButtonsStateListener;
@@ -99,9 +100,9 @@ public class KKMulticopterFlashTool extends JFrame implements
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public static String VERSION = "0.77";
+	public static String VERSION = "0.80";
 	private static boolean isBeta = true;
-	private static int betaVersion = 9;
+	private static int betaVersion = 2;
 	public static final String MODE_CHANGED = "changed";
 	public static final String KKPLUSBOOT = "kkplusboot";
 	public static final String FLYCAM_BLACKBOARD = "flycam_black";
@@ -170,6 +171,7 @@ public class KKMulticopterFlashTool extends JFrame implements
 	private Vector<ButtonsStateListener> listeners = new Vector<ButtonsStateListener>();
 	private boolean isNoLogging = false;
 	private boolean useDefaults = false;
+	private SimonkEditorPanel simonkEditorPanel;
 
 	public KKMulticopterFlashTool(String[] args) {
 
@@ -685,6 +687,7 @@ public class KKMulticopterFlashTool extends JFrame implements
 		programmers = avrConfig.getProgrammerList();
 
 		avrs.add(new AVR("HobbyKing KK2.1 and KK2.1.5", "64kB flash", "m644p", 2048, null, null));
+		avrs.add(new AVR("HobbyKing KK2.1 and KK2.1.5 (fuse restore)", "64kB flash", "m644p", 2048, "0xf7", "0xd7", "0xfc"));
 		
 		avrs.add(new AVR("HobbyKing KK2.0", "32kB flash", "m324pa", 1024, null, null));
 		avrs.add(new AVR("HobbyKing KK2.0 (fuse restore)", "32kB flash", "m324pa", 1024, "0xf7", "0xd7", "0xfc"));
@@ -751,6 +754,7 @@ public class KKMulticopterFlashTool extends JFrame implements
 		
 		programmerPanel = new ProgrammerPanel(this, programmers);
 		controllerPanel = new ControllerPanel(this, avrs);
+		simonkEditorPanel = new SimonkEditorPanel(this);
 
 		mainPanel.add(programmerPanel, cc.xy(1, 2));
 		mainPanel.add(controllerPanel, cc.xy(1, 4));
@@ -765,17 +769,19 @@ public class KKMulticopterFlashTool extends JFrame implements
 				"usbasp"));
 		controllerPanel.setController(settings.getProperty("controller",
 				"Blackboard"));
-		
-//		testPanel = new TestPanel();
-//		
+			
 		tabbedPane.addTab(_("programmingPanel.title"), programmingPanel);
 		tabbedPane.setBorder(new LineBorder(Color.WHITE));
 		tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
 		
+		tabbedPane.addTab(_("simonkEditorPanel.title"), simonkEditorPanel);
+		tabbedPane.setMnemonicAt(1, KeyEvent.VK_2);
+		tabbedPane.setEnabledAt(tabbedPane.indexOfTab(_("simonkEditorPanel.title")), false);
 		
 		tabbedPane.addTab(_("eepromPanel.title"), eepromPanel);
-		tabbedPane.setMnemonicAt(1, KeyEvent.VK_2);
-		
+		tabbedPane.setMnemonicAt(2, KeyEvent.VK_2);
+		tabbedPane.setEnabledAt(tabbedPane.indexOfTab(_("eepromPanel.title")), false);
+				
 		tabbedPane.addChangeListener(new ChangeListener() {
 			
 			@Override
@@ -858,7 +864,18 @@ public class KKMulticopterFlashTool extends JFrame implements
 		return panel;
 	}
 
-
+	private void checkTabVisibility() {
+		tabbedPane.setEnabledAt(tabbedPane.indexOfTab(_("eepromPanel.title")), false);
+		tabbedPane.setEnabledAt(tabbedPane.indexOfTab(_("simonkEditorPanel.title")), false);
+		if (controller.getCaption().equals(ESC) || controller.getCaption().equals(ESCBOOTLOADER)) {
+			tabbedPane.setEnabledAt(tabbedPane.indexOfTab(_("simonkEditorPanel.title")), true);
+		} else if (controller.getCaption().equals("m48") || controller.getCaption().equals("m48p")
+				|| controller.getCaption().equals("m168") || controller.getCaption().equals("m168p") 
+				|| controller.getCaption().equals("m328p")){
+			tabbedPane.setEnabledAt(tabbedPane.indexOfTab(_("eepromPanel.title")), true);
+		}
+	}
+	
 	public void setLocale(String language, String country) {
 		this.locale = new Locale(language, country);
 		logger.log(Level.INFO, language + "_" + country);
@@ -916,6 +933,7 @@ public class KKMulticopterFlashTool extends JFrame implements
 		new KKMulticopterFlashTool(args);
 
 		kk.mainframe.setVisible(true);
+		kk.checkTabVisibility();
 	}
 
 	public void print(final String line) {
@@ -1002,6 +1020,16 @@ public class KKMulticopterFlashTool extends JFrame implements
 	public void setFirmware(Firmware firmware) {
 		this.firmware = firmware;
 	}
+	
+	public void setHexFile(File file, boolean clearContent) {
+		firmwarePanel.setHexFile(file, clearContent);
+		switch2ProgrammingTab();
+	}
+
+	public void switch2ProgrammingTab() {
+		tabbedPane.setSelectedIndex(tabbedPane.indexOfTab(_("programmingPanel.title")));
+	}
+
 
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
@@ -1021,7 +1049,7 @@ public class KKMulticopterFlashTool extends JFrame implements
 		if (evt.getPropertyName().equals(ProgrammerPanel.PROGRAMMER_CHANGED)) {
 			//TODO Make controller dependent from Programmer.
 		}
-		
+		checkTabVisibility();
 	}
 
 

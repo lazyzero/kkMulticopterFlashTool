@@ -25,7 +25,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -51,9 +50,7 @@ import org.concord.swing.SpringUtilities;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
-import de.lazyzero.kkMulticopterFlashTool.KKMulticopterFlashTool;
 import de.lazyzero.kkMulticopterFlashTool.utils.Firmware;
-import de.lazyzero.kkMulticopterFlashTool.utils.XmlReaderFirmwares;
 import de.lazyzero.kkMulticopterFlashTool.utils.download.Download;
 import de.lazyzero.kkMulticopterFlashTool.utils.download.DownloadsTableModel;
 import de.lazyzero.kkMulticopterFlashTool.utils.download.ProgressRenderer;

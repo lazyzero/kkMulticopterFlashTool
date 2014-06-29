@@ -34,7 +34,6 @@ import java.util.prefs.Preferences;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
 
 public class CCFileDialog extends FileDialog {
 	public final static String PREFERENCE_DOMAIN ="org/concord/swing/CCFileDialog";

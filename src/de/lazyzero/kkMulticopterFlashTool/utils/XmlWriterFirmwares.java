@@ -26,8 +26,6 @@ import java.util.Vector;
 
 import org.apache.commons.codec.EncoderException;
 
-import avr8_burn_o_mat.XmlUtil;
-
 import de.lazyzero.kkMulticopterFlashTool.utils.xml.XMLElement;
 
 public class XmlWriterFirmwares {

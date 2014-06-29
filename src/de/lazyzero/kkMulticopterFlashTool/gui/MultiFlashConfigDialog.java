@@ -18,9 +18,8 @@
  */
 package de.lazyzero.kkMulticopterFlashTool.gui;
 
-import java.awt.Color;
+import static lu.tudor.santec.i18n.Translatrix._;
 
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JSpinner;
@@ -33,7 +32,6 @@ import com.jgoodies.forms.layout.FormLayout;
 
 import de.lazyzero.kkMulticopterFlashTool.KKMulticopterFlashTool;
 import de.lazyzero.kkMulticopterFlashTool.utils.MultiFlashSettings;
-import static lu.tudor.santec.i18n.Translatrix._;
 
 /**
  * @author Christian Moll
