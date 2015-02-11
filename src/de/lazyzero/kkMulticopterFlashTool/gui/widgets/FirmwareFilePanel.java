@@ -177,7 +177,6 @@ public class FirmwareFilePanel extends JPanel implements ActionListener, Buttons
 	    glass.add(number);
 	    glass.setVisible(true);
 	    
-	    
 	    Timer timer = new Timer();
         TimerTask task = new TimerTask() {
         	int count = countdown;

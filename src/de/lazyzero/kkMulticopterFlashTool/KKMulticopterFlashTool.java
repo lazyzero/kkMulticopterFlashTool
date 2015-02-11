@@ -102,7 +102,7 @@ public class KKMulticopterFlashTool extends JFrame implements
 	private static final long serialVersionUID = 1L;
 	public static String VERSION = "0.80";
 	private static boolean isBeta = true;
-	private static int betaVersion = 2;
+	private static int betaVersion = 6;
 	public static final String MODE_CHANGED = "changed";
 	public static final String KKPLUSBOOT = "kkplusboot";
 	public static final String FLYCAM_BLACKBOARD = "flycam_black";
@@ -287,7 +287,9 @@ public class KKMulticopterFlashTool extends JFrame implements
 		if (firmwareReader.getActualVersion()>Double.parseDouble(VERSION)) {
 //			JOptionPane.showMessageDialog(this, _("update"));
 			String[] choices = {_("downloads.download"), _("Cancel")};
-			int result = JOptionPane.showOptionDialog(this, _("update"), "",
+			String updateTitle = String.format(_("updateTitle"), Double.toString(firmwareReader.getActualVersion()));
+			String updateText = "<html>"+_("update") + "<br><br>" + _("updateChanges") + "<br>" + firmwareReader.getChangelog(); 
+			int result = JOptionPane.showOptionDialog(this, updateText, updateTitle ,
 				      JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, 
 				      null, choices, choices[0]);
 			if (result == 0) {
@@ -598,12 +600,12 @@ public class KKMulticopterFlashTool extends JFrame implements
 		try {
 			settings.load(new FileInputStream(SETTINGS_FILE));
 			
-			firmwareRepositoryURL.put("firmwareRepositoryURL", settings.getProperty("firmwareRepositoryURL", "http://www.lazyzero.de/_media/firmwares.xml.zip"));
+			firmwareRepositoryURL.put("firmwareRepositoryURL", settings.getProperty("firmwareRepositoryURL", "http://www.chrmoll.de/_media/firmwares.xml.zip"));
 			//check for depricated settings!!!
-			if (firmwareRepositoryURL.containsValue("http://www.lazyzero.de/_media/firmwares.xml")) {
-				firmwareRepositoryURL.put("firmwareRepositoryURL", "http://www.lazyzero.de/_media/firmwares.xml.zip");
+			if (firmwareRepositoryURL.containsValue("http://www.chrmoll.de/_media/firmwares.xml")) {
+				firmwareRepositoryURL.put("firmwareRepositoryURL", "http://www.chrmoll.de/_media/firmwares.xml.zip");
 			}
-			firmwareRepositoryURL.put("tgydaily",settings.getProperty("tgydaily", "http://www.lazyzero.de/_media/tgy_daily.xml.zip"));
+			firmwareRepositoryURL.put("tgydaily",settings.getProperty("tgydaily", "http://www.chrmoll.de/_media/tgy_daily.xml.zip"));
 			
 			offlineMode = new Boolean(settings.getProperty("offlineMode","false"));
 			isPopupsEnabled = new Boolean(settings.getProperty("isPopupEnabled","true"));
@@ -629,7 +631,7 @@ public class KKMulticopterFlashTool extends JFrame implements
 		} catch (Exception e) {
 			
 			e.printStackTrace();
-			firmwareRepositoryURL.put("firmwareRepositoryURL", "http://www.lazyzero.de/_media/firmwares.xml.zip");
+			firmwareRepositoryURL.put("firmwareRepositoryURL", "http://www.chrmoll.de/_media/firmwares.xml.zip");
 			offlineMode = false;
 			
 			saveSettings();

@@ -57,6 +57,7 @@ public class XmlReaderFirmwares {
     private double actualVersion;
 	private LinkedHashMap<String,String> firmwareRepositories = new LinkedHashMap<String,String>();
 	private Logger logger = KKMulticopterFlashTool.getLogger();
+	private String changelog;
 	
     
     /** Creates a new instance of FuseReader */
@@ -152,7 +153,7 @@ public class XmlReaderFirmwares {
 			@Override
 			public int compare(Firmware o1, Firmware o2) {
 				// TODO Auto-generated method stub
-				return o2.toString2().compareTo(o1.toString2());
+				return o2.toStringSorting().compareTo(o1.toStringSorting());
 			}
 		});
 
@@ -194,6 +195,7 @@ public class XmlReaderFirmwares {
             }
             if (node.getNodeName().equals("version")) {
                 readVersion(node);
+                readChangelog(node);
             }
             
             node = node.getNextSibling();
@@ -201,7 +203,21 @@ public class XmlReaderFirmwares {
         
     }
     
-    private void readVersion(Node node) {
+    private void readChangelog(Node node) {
+    	Node nodeChangelog = node.getFirstChild();
+    	changelog = "<ul>";
+    	while (nodeChangelog != null) {
+    		if (nodeChangelog.getNodeName().equals("change")) {
+        		String line = XmlUtil.getAttr(nodeChangelog, "value");
+        		changelog = changelog.concat("<li>" + line + "</li>");
+            }
+    		nodeChangelog = nodeChangelog.getNextSibling();
+    	}
+    	changelog = changelog.concat("<li>and more...</li>");
+		changelog = changelog.concat("</ul>");
+	}
+
+	private void readVersion(Node node) {
 		actualVersion = Double.parseDouble(XmlUtil.getAttr(node, "name"));
 	}
 
@@ -468,6 +484,10 @@ public class XmlReaderFirmwares {
 	 */
 	public double getActualVersion() {
 		return actualVersion;
+	}
+	
+	public String getChangelog() {
+		return changelog;
 	}
 
 	public void reloadXmlFile(LinkedHashMap<String, String> urls) throws Exception {

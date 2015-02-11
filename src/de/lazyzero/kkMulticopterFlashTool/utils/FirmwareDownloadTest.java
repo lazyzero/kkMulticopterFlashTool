@@ -36,7 +36,7 @@ public class FirmwareDownloadTest {
 
 	public static void main (String[] args) {
 	
-		firmwareRepositoryURL = System.getProperty("user.dir")+"/firmwares.xml.flightstab_20140208";//.simonk10062012";
+		firmwareRepositoryURL = System.getProperty("user.dir")+"/firmwares.xml.simonk20140930";//.simonk10062012";
 		
 		firmwareReader = new XmlReaderFirmwares();
 		try {

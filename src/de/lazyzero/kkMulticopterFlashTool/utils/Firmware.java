@@ -26,12 +26,17 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.Enumeration;
+import java.util.Formatter;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Locale;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+//import org.json.simple.JSONObject;
 
 import de.lazyzero.kkMulticopterFlashTool.KKMulticopterFlashTool;
 
@@ -335,8 +340,16 @@ public class Firmware {
 		return name + " ( V" + version + " [" + controller + "]" + " " + author + " )";
 	}
 	
-	public String toString2() {
-		return name+version+author;
+	public String toStringSorting() {
+		//return name+version+author; //old
+		if (target == TARGET_ESC) return name+version+author;
+		StringBuilder sortableVersion = new StringBuilder();
+		String[] v = version.split(".");
+		for (String part : v) {
+			new Formatter(sortableVersion, Locale.US).format("00000000000000000000000000", part);
+		}
+		
+		return author+name+sortableVersion;
 	}
 	
 	public String toHTMLString() {
@@ -595,5 +608,12 @@ public class Firmware {
 	public boolean isDeprecated() {
 		return isDeprecated;
 	}
+
+//	public String toJSON() {
+//		JSONObject obj = new JSONObject();
+//		obj.put("author", author);
+//		obj.put("controller", controller);
+//		return obj.toJSONString();
+//	}
 	
 }

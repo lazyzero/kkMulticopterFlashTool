@@ -308,7 +308,7 @@ public class kkMenu extends JMenuBar {
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e)
 					{
-						JLabel icon = new JLabel(Icons.getIcon(Icons.app, 128));
+						JLabel icon = new JLabel(Icons.getIcon(Icons.app, 192));
 						JLabel title = new JLabel("<HTML><H2>KKmulticopter Flash Tool " + KKMulticopterFlashTool.VERSION +"</H2></HTML>");
 						title.setHorizontalAlignment(JLabel.CENTER);
 						JLabel main = new JLabel(Translatrix.getTranslationString("about.message"));

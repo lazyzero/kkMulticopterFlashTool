@@ -1,5 +1,5 @@
 <project name="kkMulticopterFlashTool" default="default" basedir=".">
-	<property name="version" value="0.80beta2" />
+	<property name="version" value="0.80beta6" />
 	 <!-- Set this property value to your application name -->
 	<property name="app.name" value="kkMulticopter Flash Tool"/>
 	<property name="dist.dir" value="${basedir}/dist" />
@@ -9,7 +9,7 @@
 	<property name="libs" value="${basedir}/lib" />
 	<property name="MainClass" value="de.lazyzero.kkMulticopterFlashTool.KKMulticopterFlashTool" />
 	<property name="MANIFEST" value="${basedir}/dist/MANIFEST.MF" />
-	<property name="splashImage" value="resources/KK.png" />
+	<property name="splashImage" value="KKsplash.png" />
 	<property name="jar.file" value="${dist.dir}/kkMulticopterFlashTool.jar" />
 	<property name="dist.dmg.file" value="kkmulticopterflashtool_${version}.dmg" />
 
@@ -19,7 +19,7 @@
 	<path id="libs">
 		<fileset dir="lib">
 			<include name="**/*.jar" />
-			<include name="KK.png" />
+			<include name="${splashImage}" />
 		</fileset>
 	</path>
 
@@ -59,6 +59,7 @@
 	<!-- Build jar file -->
 	<target name="jar" description="Build jar file" depends="clean, gen-manifest">
 		<mkdir dir="${dist.dir}"/>
+		<copy tofile="${bin.dir}/${splashImage}" file="${resources.dir}/${splashImage}"/>
 		<!-- generate the manifest-file -->
 		<jar jarfile="${jar.file}" basedir="${bin.dir}" manifest="${MANIFEST}">
 		</jar>
@@ -103,6 +104,7 @@
 
 		<delete dir="macOSXrelease" />
 		<mkdir dir="macOSXrelease"/>
+		<copy tofile="${basedir}/${splashImage}" file="${resources.dir}/${splashImage}"/>
 
 		<!-- create a jar bundle for the mac -->
 		<jarbundler dir="macOSXrelease"
@@ -111,6 +113,7 @@
 	                signature="Christian Moll"
 	                mainclass="${MainClass}" 
 			        icon="macOSX/kk.icns"
+			        splashfile="$JAVAROOT/KK.png"
 	                jvmversion="1.6+"
 	                version="${version}"
 	                infostring="kkFlashTool, v${version}, February 2011"
@@ -125,6 +128,7 @@
 				<include name="lib/**/*"/>
 				<include name="src/**/*" />
 				<exclude name="**/CVS" />
+				<include name="KK.png" />
 				<exclude name="lib/avrdude/linux/**/*" />
 				<exclude name="lib/avrdude/linux64/**/*" />
 				<exclude name="lib/avrdude/windows/**/*" />
