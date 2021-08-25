@@ -29,6 +29,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Enumeration;
@@ -377,12 +378,19 @@ public class XmlReaderFirmwares {
         filename = tmpdir + filename;
         	
 		File tmpFile = new File(filename);
-		if ((new File(tmpdir)).mkdir()) System.out.println("tmpdir created");
+		if ((new File(tmpdir)).mkdir()) 
+			System.out.println("tmpdir created");
 		
 		
     		try {
     			long time = System.currentTimeMillis();
 //    			ZipInputStream in  = new ZipInputStream(url.openStream());
+    			URLConnection connection = url.openConnection();
+    			String redirect = connection.getHeaderField("Location");
+    			if (redirect != null){
+    			    url = new URL(redirect);
+    			}
+    			
     			BufferedInputStream in = new BufferedInputStream(url.openStream());
     			FileOutputStream fos = new FileOutputStream(tmpFile);
     			BufferedOutputStream bout = new BufferedOutputStream(fos,1024);

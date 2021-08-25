@@ -26,7 +26,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.text.DecimalFormat;
+import java.net.URLConnection;
 import java.util.Enumeration;
 import java.util.Formatter;
 import java.util.HashMap;
@@ -271,6 +271,12 @@ public class Firmware {
 		
 		if (!tmpFile.exists() || reload) {
     		try {
+    			URLConnection connection = url.openConnection();
+    			String redirect = connection.getHeaderField("Location");
+    			if (redirect != null){
+    			    url = new URL(redirect);
+    			}
+    			
     			BufferedInputStream in = new BufferedInputStream(url.openStream());
     			FileOutputStream fos = new FileOutputStream(tmpFile);
     			BufferedOutputStream bout = new BufferedOutputStream(fos,1024);
