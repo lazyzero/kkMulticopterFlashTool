@@ -629,13 +629,10 @@ public class KKMulticopterFlashTool extends JFrame implements
 			}
 
 		} catch (Exception e) {
-			
-			e.printStackTrace();
 			firmwareRepositoryURL.put("firmwareRepositoryURL", "http://www.chrmoll.de/_media/firmwares.xml.zip");
 			offlineMode = false;
 			
 			saveSettings();
-			e.printStackTrace();
 		}
 	}
 
